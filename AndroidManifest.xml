@@ -46,6 +46,27 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.niceapps.app.Profile"/>
         </activity>
+        <activity
+            android:name="com.niceapps.app.See_offer"
+            android:hint="@string/app_name" 
+            android:parentActivityName="com.niceapps.app.See_offer">
+        </activity>
+        <activity
+            android:name="com.niceapps.app.Accept"
+            android:hint="@string/app_name" 
+            android:parentActivityName="com.niceapps.app.See_offer">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.niceapps.app.See_offer"/>
+        </activity>
+        <activity
+            android:name="com.niceapps.app.Reject"
+            android:hint="@string/app_name" 
+            android:parentActivityName="com.niceapps.app.See_offer">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.niceapps.app.See_offer"/>
+        </activity>
     </application>
 
 </manifest>
