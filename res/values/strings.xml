@@ -11,6 +11,7 @@
     <color name="blue">#156B68</color>
     <color name="white">#ffffff</color>
     <string name="login">Login</string>
+    <string name="app_description">Vinyl disk exchange service</string>
     <string name="search_bar">Search Item&#8230;</string>
     <string name="new_item">New Item</string>
     <string name="description">Description</string>
