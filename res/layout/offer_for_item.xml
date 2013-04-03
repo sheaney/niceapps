@@ -41,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="33dp"
         android:ems="10"
@@ -57,6 +58,9 @@
         android:layout_alignRight="@+id/quickContactBadge1"
         android:layout_below="@+id/editText1"
         android:layout_marginTop="68dp"
-        android:text="@string/send" />
+        android:background="@color/bg_color"
+        android:text="@string/send"
+        android:textColor="@color/orange"
+        android:textColorHint="@color/orange" />
 
 </RelativeLayout>

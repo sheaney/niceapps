@@ -67,29 +67,6 @@
         android:text="@string/interested_in"
         android:textColor="@color/blue" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignLeft="@+id/editText3"
-        android:background="@color/bg_color"
-        android:text="@string/interested"
-        android:textColor="@color/orange" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/quickContactBadge1"
-        android:layout_below="@+id/editText3"
-        android:layout_marginRight="33dp"
-        android:layout_marginTop="42dp"
-        android:background="@color/bg_color"
-        android:text="@string/delete"
-        android:textColor="@color/red" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -101,5 +78,16 @@
         android:text="@string/disk_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/red" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText3"
+        android:layout_below="@+id/editText3"
+        android:layout_marginTop="22dp"
+        android:background="@color/bg_color"
+        android:text="@string/interested"
+        android:textColor="@color/orange" />
 
 </RelativeLayout>
