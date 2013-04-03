@@ -8,7 +8,19 @@
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_item" >
     </ListView>
+
+    <Button
+        android:id="@+id/new_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="18dp"
+        android:background="@color/bg_color"
+        android:text="@string/new_item"
+        android:textColor="@color/orange" />
 
 </RelativeLayout>
