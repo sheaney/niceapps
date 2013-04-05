@@ -26,13 +26,47 @@
         android:src="@drawable/music" />
 
     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="28dp"
+        android:text="@string/developed"
+        android:textColor="@color/blue" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentBottom="true"
+        android:text="@string/integrante_samuel"
+        android:textColor="@color/blue" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/app_description"
+        android:text="@string/integrante_abi"
+        android:textColor="@color/blue"
+        android:textColorHint="@color/blue" />
+
+    <TextView
         android:id="@+id/app_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
-        android:text="@string/app_description" />
+        android:text="@string/app_description"
+        android:textColor="@color/blue"
+        android:textColorHint="@color/blue"
+        android:textSize="@dimen/button_textr" />
 
 </RelativeLayout>

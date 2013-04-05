@@ -26,6 +26,12 @@ public class Profile extends Activity {
 				more_items(view);
 			}
 		});
+        
+        ((Button) findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				see_items(view);
+			}
+		});
 	}
 	
 	/** Called when the user clicks the 'New Item' button */
@@ -37,6 +43,13 @@ public class Profile extends Activity {
 	
 	/** Called when the user clicks the 'More' button */
 	public void more_items(View view) {
+		// Do something in response to button
+		Intent intent = new Intent(this, YourItems.class);
+		startActivity(intent);
+	}	
+	
+	/** Called when the user clicks the 'Go to items..' button */
+	public void see_items(View view) {
 		// Do something in response to button
 		Intent intent = new Intent(this, YourItems.class);
 		startActivity(intent);
