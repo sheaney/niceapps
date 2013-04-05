@@ -50,16 +50,6 @@
         <requestFocus />
     </EditText>
 
-    <ImageView
-        android:id="@+id/disk_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="26dp"
-        android:contentDescription="@string/image"
-        android:src="@drawable/disk" />
-
     <Button
         android:id="@+id/search_pictures"
         android:layout_width="wrap_content"
@@ -87,8 +77,20 @@
         android:layout_below="@+id/send_to"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@color/bg_color"
+        android:background="@color/orange"
         android:text="@string/upload"
-        android:textColor="@color/orange" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_textr" />
+
+    <ImageView
+        android:id="@+id/disk_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/description"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="38dp"
+        android:contentDescription="@string/image"
+        android:src="@drawable/disk" />
 
 </RelativeLayout>

@@ -18,9 +18,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="18dp"
-        android:background="@color/bg_color"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/orange"
         android:text="@string/new_item"
-        android:textColor="@color/orange" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_textr" />
 
 </RelativeLayout>

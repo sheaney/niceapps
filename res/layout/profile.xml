@@ -48,9 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/profile_image"
         android:layout_alignRight="@+id/search_text"
-        android:background="@color/bg_color"
+        android:background="@color/orange"
         android:text="@string/new_item"
-        android:textColor="@color/orange" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_textr" />
 
     <Button
         android:id="@+id/more_items"

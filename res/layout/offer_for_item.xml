@@ -5,25 +5,6 @@
     android:background="@color/bg_color"
     android:orientation="vertical" >
 
-    <QuickContactBadge
-        android:id="@+id/quickContactBadge1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="34dp"
-        android:layout_marginTop="38dp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/quickContactBadge1"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="34dp"
-        android:contentDescription="@string/image"
-        android:src="@drawable/disk" />
-    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -40,10 +21,9 @@
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignRight="@+id/button1"
+        android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="41dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:text="@string/your_offer" >
@@ -51,16 +31,38 @@
         <requestFocus />
     </EditText>
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="28dp"
+        android:contentDescription="@string/image"
+        android:src="@drawable/user" />
+
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/quickContactBadge1"
+        android:layout_alignLeft="@+id/editText1"
         android:layout_below="@+id/editText1"
-        android:layout_marginTop="68dp"
-        android:background="@color/bg_color"
+        android:layout_marginTop="34dp"
+        android:background="@color/orange"
         android:text="@string/send"
-        android:textColor="@color/orange"
-        android:textColorHint="@color/orange" />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/button_textr" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/button1"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="56dp"
+        android:contentDescription="@string/image"
+        android:src="@drawable/disk" />
 
 </RelativeLayout>

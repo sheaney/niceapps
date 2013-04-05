@@ -62,8 +62,9 @@
         android:layout_below="@+id/editText3"
         android:layout_marginRight="51dp"
         android:layout_marginTop="30dp"
-        android:background="@color/bg_color"
+        android:background="@color/orange"
         android:text="@string/accept"
-        android:textColor="@color/orange" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_textr" />
 
 </RelativeLayout>
