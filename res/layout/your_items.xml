@@ -6,23 +6,11 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/new_item" >
-    </ListView>
-
-    <Button
-        android:id="@+id/new_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="17dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/orange"
-        android:text="@string/new_item"
-        android:textColor="@color/white"
-        android:textSize="@dimen/button_textr" />
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector" />
 
 </RelativeLayout>

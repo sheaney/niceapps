@@ -18,7 +18,7 @@
     <string name="search_pictures">Search Pictures</string>
     <string name="send_to">Send To</string>
     <string name="upload">Upload</string>
-    <string name="more_items">More</string>
+    <string name="more_items">More&#8230;</string>
     <string name="disk_title">Disk Title</string>
     <string name="item_cond">Item conditions..</string>
     <string name="interested_in">Interests: Type of disks you want to receive.</string>
@@ -33,6 +33,6 @@
     <string name="integrante_samuel">Samuel Heaney</string>
     <string name="integrante_abi">Abigail Sosa</string>
     <string name="developed">Developed by NiceApps</string>
-    <string name="see_items">Go to items..</string>
+    <string name="view_offers">View Offers (3)</string>
 
 </resources>

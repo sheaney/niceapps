@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-public class YourItems extends Activity implements OnItemClickListener {
+public class YourOffers extends Activity implements OnItemClickListener {
 	
 	ListView listView;
 	ArrayAdapter<String> adapter;
@@ -28,24 +28,16 @@ public class YourItems extends Activity implements OnItemClickListener {
         strs.add("Vinyl 1");
         strs.add("Vinyl 2");
         strs.add("Vinyl 3");
-        strs.add("Vinyl 4");
-        strs.add("Vinyl 5");
-        strs.add("Vinyl 6");
-        strs.add("Vinyl 7");
-        strs.add("Vinyl 8");
-        strs.add("Vinyl 9");
-        strs.add("Vinyl 10");
-        strs.add("Vinyl 11");
         
         ListView lv = (ListView) findViewById(R.id.list);
         
-        adapter = new ArrayAdapter<String>(this, R.layout.list_row_vinyl, R.id.artist, strs);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_row_offer, R.id.artist, strs);
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(this);
 	}
 	
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
-		Intent intent = new Intent(this, Item_details.class);
+		Intent intent = new Intent(this, Offer_for_item.class);
 		startActivity(intent);
 	}
 	

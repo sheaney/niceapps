@@ -25,6 +25,7 @@
         <activity
             android:name="com.niceapps.app.Profile"
             android:hint="@string/app_name" 
+            android:windowSoftInputMode="stateHidden"
             android:parentActivityName="com.niceapps.app.Login">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -66,6 +67,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.niceapps.app.See_offer"/>
+        </activity>
+        <activity
+            android:name="com.niceapps.app.YourOffers"
+            android:hint="@string/app_name" 
+            android:parentActivityName="com.niceapps.app.Profile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.niceapps.app.YourOffers"/>
         </activity>
         <activity
             android:name="com.niceapps.app.Offer_for_item"
