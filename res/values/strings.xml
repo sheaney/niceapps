@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- App Settings -->
-    <string name="app_id">315507228578926</string>
     <string name="app_name">NiceApps</string>
+    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <color name="bg_color">#F7F5DE</color>
     <color name="yellow">#F4BC03</color>
@@ -11,9 +10,6 @@
     <color name="red">#DE4205</color>
     <color name="blue">#156B68</color>
     <color name="white">#ffffff</color>
-    <!--  -->
-    
-    <!--  App Text -->
     <string name="login">Login</string>
     <string name="app_description">Vinyl disk exchange service</string>
     <string name="search_bar">Search Item&#8230;</string>
@@ -38,7 +34,5 @@
     <string name="integrante_abi">Abigail Sosa</string>
     <string name="developed">Developed by NiceApps</string>
     <string name="view_offers">View Offers (3)</string>
-    
-    <!--  -->
 
 </resources>
