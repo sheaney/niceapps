@@ -31,10 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/search_items"
         android:gravity="center_horizontal"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp"
-        facebook:preset_size="small" />
+        facebook:preset_size="normal" />
 
     <TextView
             android:id="@+id/selection_user_name"
@@ -92,3 +89,4 @@
         android:textColor="@color/orange" />
 
 </RelativeLayout>
+

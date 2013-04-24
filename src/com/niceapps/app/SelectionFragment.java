@@ -3,6 +3,7 @@ package com.niceapps.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -80,11 +82,15 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.selection, container, false);
+		
+		// Hide soft keyboard when user logs into app
+		//InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.WINDOW_SERVICE);
+		//inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
 
 		// Find the user's profile picture custom view
 		profilePictureView = (ProfilePictureView) view
 				.findViewById(R.id.selection_profile_pic);
-		profilePictureView.setCropped(true);
+		profilePictureView.setCropped(false);
 
 		// Find the user's name view
 		userNameView = (TextView) view.findViewById(R.id.selection_user_name);
