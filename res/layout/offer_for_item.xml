@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
@@ -31,15 +32,15 @@
         <requestFocus />
     </EditText>
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <com.facebook.widget.ProfilePictureView
+        android:id="@+id/offer_profile_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignParentRight="true"
         android:layout_marginRight="28dp"
         android:contentDescription="@string/image"
-        android:src="@drawable/user" />
+        facebook:preset_size="normal" />
 
     <Button
         android:id="@+id/button1"
