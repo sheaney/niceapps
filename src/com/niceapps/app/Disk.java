@@ -17,14 +17,14 @@ public class Disk implements Serializable {
 	String pic_path;
 	
 	
-	public Disk(int id, String title, String artist, String pic_path){
+	public Disk(int id, String title, String artist, String pic_path, String conditions, String interest){
 		this.title = title;
 		this.artist = artist;
 		this.id = id;
-		/*this.user_id = user_id;
+		//this.user_id = user_id;
 		this.conditions = conditions;
 		this.interest = interest;
-		this.status = status;*/
+		//this.status = status;
 		this.pic_path = pic_path;
 	}
 	

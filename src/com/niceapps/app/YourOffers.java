@@ -67,7 +67,10 @@ public class YourOffers extends Activity implements OnItemClickListener {
                     disks.add(new Disk((jsonOffers.getJSONObject(i).getInt("id")),
                     					jsonOffers.getJSONObject(i).getString("title"),
                     					jsonOffers.getJSONObject(i).getString("artist"),
-                    					jsonOffers.getJSONObject(i).getString("pic_path")));
+                    					jsonOffers.getJSONObject(i).getString("pic_path"),
+                    					jsonOffers.getJSONObject(i).getString("conditions"),
+                    					jsonOffers.getJSONObject(i).getString("interest")));
+
                 }
 
                 ListView disksListView = (ListView) findViewById (R.id.list);

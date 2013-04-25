@@ -3,6 +3,9 @@ package com.niceapps.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.Request;
 import com.facebook.Response;
@@ -26,8 +30,12 @@ import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
+import com.savagelook.android.UrlJsonAsyncTask;
 
 public class SelectionFragment extends Fragment implements OnItemClickListener {
+	View view;
+	ListView disksListView;
+	private static final String DISKS_URL = "http://niceapps.herokuapp.com/disks.json";
 	private ProfilePictureView profilePictureView;
 	private TextView userNameView;
 
@@ -42,9 +50,9 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		}
 	};
 	
-	ListView listView;
+	/*ListView listView;
 	ArrayAdapter<String> adapter;
-	List<String> strs;
+	List<String> strs;*/
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -81,7 +89,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		View view = inflater.inflate(R.layout.selection, container, false);
+		view = inflater.inflate(R.layout.selection, container, false);
 		
 		// Hide soft keyboard when user logs into app
 		//InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.WINDOW_SERVICE);
@@ -101,8 +109,9 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	        // Get the user's data
 	        makeMeRequest(session);
 	    }
+	    loadDisksFromAPI(DISKS_URL, view);
 	    
-	    strs = new ArrayList<String>();
+	    /*strs = new ArrayList<String>();
         strs.add("Vinyl 1");
         strs.add("Vinyl 2");
         strs.add("Vinyl 3");
@@ -111,7 +120,9 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
         
         adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.list_row_vinyl, R.id.artist, strs);
 		lv.setAdapter(adapter);
-		lv.setOnItemClickListener(this);
+		lv.setOnItemClickListener(this);*/
+	    disksListView = (ListView) view.findViewById (R.id.my_items);
+    	disksListView.setOnItemClickListener(this);
         
         ((Button) view.findViewById(R.id.new_item)).setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
@@ -177,7 +188,9 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	}
 	
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this.getActivity(), Item_details.class);
+		intent.putExtra("disk", selected_disk);
 		startActivity(intent);
 	}
 	
@@ -200,6 +213,47 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		// Do something in response to button
 		Intent intent = new Intent(this.getActivity(), YourOffers.class);
 		startActivity(intent);
+	}
+	
+	private void loadDisksFromAPI(String url, View view) {
+	    GetDisksTask getDisksTask = new GetDisksTask(view.getContext());
+	    getDisksTask.setMessageLoading("Loading Disks...");
+	    getDisksTask.execute(url);
+	}
+	
+	private class GetDisksTask extends UrlJsonAsyncTask {
+	    public GetDisksTask(Context context) {
+	        super(context);
+	    }
+
+	    @Override
+	        protected void onPostExecute(JSONObject json) {
+	            try {
+	                JSONArray jsonDisks = json.getJSONObject("data").getJSONArray("disks");
+	                int length = 3; // 3 disks max
+	                ArrayList<Disk> disks = new ArrayList<Disk>(length);
+	                
+	                for (int i = 0; i < length; i++) {
+	                    disks.add(new Disk((jsonDisks.getJSONObject(i).getInt("id")),
+            					jsonDisks.getJSONObject(i).getString("title"),
+            					jsonDisks.getJSONObject(i).getString("artist"),
+            					jsonDisks.getJSONObject(i).getString("pic_path"),
+            					jsonDisks.getJSONObject(i).getString("conditions"),
+            					jsonDisks.getJSONObject(i).getString("interest")));
+	                }
+
+	               
+	                if (disksListView != null) {
+	                	CustomAdapter customAdapter = new CustomAdapter(view.getContext(), disks);
+	                	disksListView.setAdapter(customAdapter);
+	                }
+	            } catch (Exception e) {
+	            Toast.makeText(context, e.getMessage(),
+	                Toast.LENGTH_LONG).show();
+	        } finally {
+	            super.onPostExecute(json);
+	        }
+	    }
 	}
 
 }
