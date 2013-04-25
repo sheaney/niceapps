@@ -34,7 +34,7 @@ public class Offer_for_item extends Activity {
 		title.setText(disk.getTitle());
 
 		// Find the user's profile picture custom view
-		profilePictureView = (ProfilePictureView) findViewById(R.id.profile_pic);
+		profilePictureView = (ProfilePictureView) findViewById(R.id.offer_profile_pic);
 		profilePictureView.setCropped(false);
 		Session session = Session.getActiveSession();
 		if (session != null && session.isOpened()) {

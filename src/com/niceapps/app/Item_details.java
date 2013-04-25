@@ -36,7 +36,7 @@ public class Item_details extends Activity {
 		interests.setText(disk.getInterest());
 
 		// Find the user's profile picture custom view
-		profilePictureView = (ProfilePictureView) findViewById(R.id.profile_pic);
+		profilePictureView = (ProfilePictureView) findViewById(R.id.item_details_profile_pic);
 		profilePictureView.setCropped(false);
 		Session session = Session.getActiveSession();
 		if (session != null && session.isOpened()) {

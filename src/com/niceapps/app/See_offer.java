@@ -45,7 +45,7 @@ public class See_offer extends Activity {
 		// loadOfferFromAPI(OFFER_URL);
 
 		// Find the user's profile picture custom view
-		profilePictureView = (ProfilePictureView) findViewById(R.id.profile_pic);
+		profilePictureView = (ProfilePictureView) findViewById(R.id.see_offer_profile_pic);
 		profilePictureView.setCropped(false);
 		Session session = Session.getActiveSession();
 		if (session != null && session.isOpened()) {
