@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
@@ -10,13 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/profile_image"
+        android:layout_toRightOf="@+id/profile_pic"
         android:background="@color/bg_color"
         android:text="@string/more_items"
         android:textColor="@color/orange" />
 
-    <ImageView
-        android:id="@+id/profile_image"
+    <com.facebook.widget.ProfilePictureView
+        android:id="@+id/profile_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -26,14 +27,14 @@
         android:paddingBottom="15dp"
         android:paddingLeft="15dp"
         android:paddingTop="15dp"
-        android:src="@drawable/profile" />
+        facebook:preset_size="normal" />
 
     <EditText
         android:id="@+id/disk_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/profile_image"
+        android:layout_below="@+id/profile_pic"
         android:ems="10"
         android:hint="@string/disk_title" />
 
@@ -55,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/disk_image"
-        android:layout_alignRight="@+id/profile_image"
+        android:layout_alignRight="@+id/profile_pic"
         android:background="@color/bg_color"
         android:text="@string/search_pictures"
         android:textColor="@color/orange" />
@@ -66,9 +67,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/disk_image"
-        android:hint="@string/send_to"
         android:layout_marginTop="20dp"
-        android:ems="10" />
+        android:ems="10"
+        android:hint="@string/send_to" />
 
     <Button
         android:id="@+id/upload"
