@@ -6,19 +6,19 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/accept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignLeft="@+id/editText3"
+        android:layout_alignBaseline="@+id/reject"
+        android:layout_alignBottom="@+id/reject"
+        android:layout_alignLeft="@+id/message"
         android:background="@color/orange"
         android:text="@string/accept"
         android:textColor="@color/white"
         android:textSize="@dimen/button_textr" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -30,11 +30,11 @@
         android:textColor="@color/red" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/title"
+        android:layout_below="@+id/title"
         android:layout_marginTop="27dp"
         android:ems="10"
         android:inputType="textMultiLine"
@@ -49,17 +49,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/button2"
+        android:layout_alignRight="@+id/accept"
         android:layout_marginTop="46dp"
         android:contentDescription="@string/image"
         android:src="@drawable/disk" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/reject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_below="@+id/editText3"
+        android:layout_alignRight="@+id/message"
+        android:layout_below="@+id/message"
         android:layout_marginTop="42dp"
         android:background="@color/red"
         android:text="@string/reject"
@@ -70,8 +70,8 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignLeft="@+id/button1"
+        android:layout_alignBottom="@+id/title"
+        android:layout_alignLeft="@+id/reject"
         android:layout_marginBottom="14dp"
         android:layout_marginLeft="19dp"
         android:contentDescription="@string/image"
