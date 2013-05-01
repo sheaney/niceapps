@@ -1,7 +1,6 @@
 package com.niceapps.app;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,14 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -49,10 +47,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 			onSessionStateChange(session, state, exception);
 		}
 	};
-	
-	/*ListView listView;
-	ArrayAdapter<String> adapter;
-	List<String> strs;*/
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -90,10 +84,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		view = inflater.inflate(R.layout.selection, container, false);
-		
-		// Hide soft keyboard when user logs into app
-		//InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.WINDOW_SERVICE);
-		//inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
 
 		// Find the user's profile picture custom view
 		profilePictureView = (ProfilePictureView) view
@@ -102,7 +92,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 
 		// Find the user's name view
 		userNameView = (TextView) view.findViewById(R.id.selection_user_name);
-		
+
 		// Check for an open session
 	    Session session = Session.getActiveSession();
 	    if (session != null && session.isOpened()) {
@@ -110,17 +100,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	        makeMeRequest(session);
 	    }
 	    loadDisksFromAPI(DISKS_URL, view);
-	    
-	    /*strs = new ArrayList<String>();
-        strs.add("Vinyl 1");
-        strs.add("Vinyl 2");
-        strs.add("Vinyl 3");
-        
-        ListView lv = (ListView) view.findViewById(R.id.my_items);
-        
-        adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.list_row_vinyl, R.id.artist, strs);
-		lv.setAdapter(adapter);
-		lv.setOnItemClickListener(this);*/
 	    disksListView = (ListView) view.findViewById (R.id.my_items);
     	disksListView.setOnItemClickListener(this);
         
@@ -174,59 +153,64 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 				});
 		request.executeAsync();
 	}
-	
+
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this.getActivity(), Item_details.class);
 		intent.putExtra("disk", selected_disk);
+		Log.w("[DISK DETAILS]", selected_disk.getTitle());
+		Log.w("[DISK DETAILS]", selected_disk.getConditions());
+		Log.w("[DISK DETAILS]", selected_disk.getInterest());
 		startActivity(intent);
 	}
-	
-	
+
 	/** Called when the user clicks the 'More' button */
 	public void more_items(View view) {
 		// Do something in response to button
 		Intent intent = new Intent(this.getActivity(), YourItems.class);
 		startActivity(intent);
 	}	
-	
+
 	private void loadDisksFromAPI(String url, View view) {
-	    GetDisksTask getDisksTask = new GetDisksTask(view.getContext());
-	    getDisksTask.setMessageLoading("Loading Disks...");
-	    getDisksTask.execute(url);
+		GetDisksTask getDisksTask = new GetDisksTask(view.getContext());
+		getDisksTask.setMessageLoading("Loading Disks...");
+		getDisksTask.execute(url);
 	}
-	
+
 	private class GetDisksTask extends UrlJsonAsyncTask {
-	    public GetDisksTask(Context context) {
-	        super(context);
-	    }
+		public GetDisksTask(Context context) {
+			super(context);
+		}
 
-	    @Override
-	        protected void onPostExecute(JSONObject json) {
-	            try {
-	                JSONArray jsonDisks = json.getJSONObject("data").getJSONArray("disks");
-	                int length = 3; // 3 disks max
-	                ArrayList<Disk> disks = new ArrayList<Disk>(length);
-	                
-	                for (int i = 0; i < length; i++) {
-	                    disks.add(new Disk((jsonDisks.getJSONObject(i).getInt("id")),
-            					jsonDisks.getJSONObject(i).getString("title"),
-            					jsonDisks.getJSONObject(i).getString("artist"),
-            					jsonDisks.getJSONObject(i).getString("status")));
-	                }
+		@Override
+		protected void onPostExecute(JSONObject json) {
+			try {
+				JSONArray jsonDisks = json.getJSONObject("data").getJSONArray(
+						"disks");
+				int length = 3; // 3 disks max
+				ArrayList<Disk> disks = new ArrayList<Disk>(length);
 
-	               
-	                if (disksListView != null) {
-	                	CustomAdapter customAdapter = new CustomAdapter(view.getContext(), disks);
-	                	disksListView.setAdapter(customAdapter);
-	                }
-	            } catch (Exception e) {
-	            Toast.makeText(context, e.getMessage(),
-	                Toast.LENGTH_LONG).show();
-	        } finally {
-	            super.onPostExecute(json);
-	        }
-	    }
+				for (int i = 0; i < jsonDisks.length() && i < length; i++) {
+					disks.add(new Disk(
+							(jsonDisks.getJSONObject(i).getInt("id")),
+							jsonDisks.getJSONObject(i).getString("title"),
+							jsonDisks.getJSONObject(i).getString("artist"),
+							jsonDisks.getJSONObject(i).getString("image_encoding"),
+							jsonDisks.getJSONObject(i).getString("status")));
+				}
+
+				if (disksListView != null) {
+					CustomAdapter customAdapter = new CustomAdapter(
+							view.getContext(), disks);
+					disksListView.setAdapter(customAdapter);
+				}
+			} catch (Exception e) {
+				Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG)
+						.show();
+			} finally {
+				super.onPostExecute(json);
+			}
+		}
 	}
 
 }
