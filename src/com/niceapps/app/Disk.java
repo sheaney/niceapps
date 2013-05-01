@@ -8,7 +8,6 @@ public class Disk implements Serializable {
 	 */
 	private static final long serialVersionUID = 6654019162381403220L;
 	int id;
-	int user_id;
 	String title;
 	String artist;
 	String conditions;
@@ -17,23 +16,19 @@ public class Disk implements Serializable {
 	String pic_path;
 	
 	
-	public Disk(int id, String title, String artist, String pic_path, String conditions, String interest){
+	public Disk(int id, String title, String artist, String status){
 		this.title = title;
 		this.artist = artist;
 		this.id = id;
 		//this.user_id = user_id;
-		this.conditions = conditions;
-		this.interest = interest;
-		//this.status = status;
-		this.pic_path = pic_path;
+		//this.conditions = conditions;
+		//this.interest = interest;
+		this.status = status;
+		//this.pic_path = pic_path;
 	}
 	
 	public int getId() {
 		return id;
-	}
-
-	public int getUser_id() {
-		return user_id;
 	}
 
 	public String getPic_path() {

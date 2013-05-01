@@ -37,11 +37,6 @@ public class Profile extends Activity implements OnItemClickListener {
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(this);
         
-        ((Button) findViewById(R.id.new_item)).setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				new_item(view);
-			}
-		});
         
         ((Button) findViewById(R.id.more_items)).setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
@@ -49,11 +44,6 @@ public class Profile extends Activity implements OnItemClickListener {
 			}
 		});
         
-        ((Button) findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				see_offers(view);
-			}
-		});
 	}
 	
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
@@ -61,13 +51,7 @@ public class Profile extends Activity implements OnItemClickListener {
 		startActivity(intent);
 	}
 	
-	/** Called when the user clicks the 'New Item' button */
-	public void new_item(View view) {
-		// Do something in response to button
-		Intent intent = new Intent(this, UploadItem.class);
-		startActivity(intent);
-	}
-	
+
 	/** Called when the user clicks the 'More' button */
 	public void more_items(View view) {
 		// Do something in response to button
@@ -75,11 +59,5 @@ public class Profile extends Activity implements OnItemClickListener {
 		startActivity(intent);
 	}	
 	
-	/** Called when the user clicks the 'Go to items..' button */
-	public void see_offers(View view) {
-		// Do something in response to button
-		Intent intent = new Intent(this, YourOffers.class);
-		startActivity(intent);
-	}	
 	
 }

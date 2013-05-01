@@ -1,5 +1,8 @@
 package com.niceapps.app;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
@@ -8,6 +11,7 @@ import com.facebook.widget.ProfilePictureView;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,8 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Offer_for_item extends Activity {
+	
+	private static final String URL = "http://niceapps.herokuapp.com/messages/";
+	private static final String TAG = "Msg_to_admin";
+	
 	private TextView title;
-	private EditText offer;
+	private EditText message;
 	private Disk disk;
 
 	private ProfilePictureView profilePictureView;
@@ -29,7 +37,7 @@ public class Offer_for_item extends Activity {
 		disk = (Disk) getIntent().getSerializableExtra("disk");
 
 		title = (TextView) findViewById(R.id.textView1);
-		offer = (EditText) findViewById(R.id.editText1);
+		message = (EditText) findViewById(R.id.editText1);
 
 		title.setText(disk.getTitle());
 
@@ -40,21 +48,43 @@ public class Offer_for_item extends Activity {
 		if (session != null && session.isOpened()) {
 			// Get the user's data
 			makeMeRequest(session);
+			
 		}
-
+		
+		
+		
 		// Accion a realizar en caso de que se oprima el boton Send Offer
 		((Button) findViewById(R.id.button1))
 				.setOnClickListener(new OnClickListener() {
 					public void onClick(View view) {
-						String offer_msg = offer.getText().toString();
-						send_offer(); // Manda llamar al m�todo send_offer
+						send_msg(); // Manda llamar al m�todo send_offer
 					}
 				});
 	}
 
-	private void send_offer() {
+	private void send_msg() {
+		// JSON object to hold the information, which is sent to the server
+		JSONObject jsonObjSend = new JSONObject();
+
+		try {
+			// Add key/value pairs
+			jsonObjSend.put("content", message.getText().toString());
+			jsonObjSend.put("disk_id", disk.getId());
+			jsonObjSend.put("user_id", 1); //Hardcodeado
+
+			// Output the JSON object we're sending to Logcat:
+			Log.i(TAG, jsonObjSend.toString(2));
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		// Send the HttpPostRequest and receive a JSONObject in return
+		JSONObject jsonObjRecv = HttpClient.SendHttpPost(URL, jsonObjSend);
+		
 		// Se tiene que crear nueva oferta aqui
-		String msg = "Offer for " + disk.getTitle() + " sent..";
+		
+		String msg = "Message for " + disk.getTitle() + " sent to Musicbox..";
 		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 	}
 	

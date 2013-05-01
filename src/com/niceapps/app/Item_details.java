@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class Item_details extends Activity {
 	private static String DISK_URL = "http://niceapps.herokuapp.com/disks/";
-	private TextView title, condition, interests;
+	private TextView title, artist, status, type;
 	private Disk disk;
 	private ProfilePictureView profilePictureView;
 
@@ -28,12 +28,12 @@ public class Item_details extends Activity {
 		DISK_URL += disk.getId() + ".json";
 
 		title = (TextView) findViewById(R.id.textView1);
-		condition = (TextView) findViewById(R.id.condition);
-		interests = (TextView) findViewById(R.id.interest);
+		artist = (TextView) findViewById(R.id.artist);
+		status = (TextView) findViewById(R.id.status);
 
 		title.setText(disk.getTitle());
-		condition.setText(disk.getConditions());
-		interests.setText(disk.getInterest());
+		artist.setText(disk.getArtist());
+		status.setText(disk.getStatus());
 
 		// Find the user's profile picture custom view
 		profilePictureView = (ProfilePictureView) findViewById(R.id.item_details_profile_pic);
@@ -48,12 +48,12 @@ public class Item_details extends Activity {
 		((Button) findViewById(R.id.button2))
 				.setOnClickListener(new OnClickListener() {
 					public void onClick(View view) {
-						send_offer(); // Manda llamar al m�todo send_offer
+						send_message(); // Manda llamar al m�todo send_offer
 					}
 				});
 	}
 
-	private void send_offer() {
+	private void send_message() {
 		Intent intent = new Intent(getBaseContext(), Offer_for_item.class);
 		intent.putExtra("disk", disk);
 		startActivity(intent);

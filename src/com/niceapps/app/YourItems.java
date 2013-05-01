@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 public class YourItems extends Activity implements OnItemClickListener {
 	
-	//private static final String DISKS_URL = "http://niceapps.herokuapp.com/disk_list/(userid).json";
 	private static final String DISKS_URL = "http://niceapps.herokuapp.com/disks.json";
 	
 	ListView listView;
@@ -66,9 +65,7 @@ public class YourItems extends Activity implements OnItemClickListener {
 	                    disks.add(new Disk((jsonDisks.getJSONObject(i).getInt("id")),
 	                    					jsonDisks.getJSONObject(i).getString("title"),
 	                    					jsonDisks.getJSONObject(i).getString("artist"),
-	                    					jsonDisks.getJSONObject(i).getString("pic_path"),
-	                    					jsonDisks.getJSONObject(i).getString("conditions"),
-	                    					jsonDisks.getJSONObject(i).getString("interest")));
+	                    					jsonDisks.getJSONObject(i).getString("status")));
 	                }
 
 	                ListView disksListView = (ListView) findViewById (R.id.list);

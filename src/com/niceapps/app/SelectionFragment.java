@@ -124,21 +124,9 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	    disksListView = (ListView) view.findViewById (R.id.my_items);
     	disksListView.setOnItemClickListener(this);
         
-        ((Button) view.findViewById(R.id.new_item)).setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				new_item(view);
-			}
-		});
-        
         ((Button) view.findViewById(R.id.more_items)).setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 				more_items(view);
-			}
-		});
-        
-        ((Button) view.findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				see_offers(view);
 			}
 		});
         
@@ -194,12 +182,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		startActivity(intent);
 	}
 	
-	/** Called when the user clicks the 'New Item' button */
-	public void new_item(View view) {
-		// Do something in response to button
-		Intent intent = new Intent(this.getActivity(), UploadItem.class);
-		startActivity(intent);
-	}
 	
 	/** Called when the user clicks the 'More' button */
 	public void more_items(View view) {
@@ -207,13 +189,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		Intent intent = new Intent(this.getActivity(), YourItems.class);
 		startActivity(intent);
 	}	
-	
-	/** Called when the user clicks the 'Go to items..' button */
-	public void see_offers(View view) {
-		// Do something in response to button
-		Intent intent = new Intent(this.getActivity(), YourOffers.class);
-		startActivity(intent);
-	}
 	
 	private void loadDisksFromAPI(String url, View view) {
 	    GetDisksTask getDisksTask = new GetDisksTask(view.getContext());
@@ -237,9 +212,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	                    disks.add(new Disk((jsonDisks.getJSONObject(i).getInt("id")),
             					jsonDisks.getJSONObject(i).getString("title"),
             					jsonDisks.getJSONObject(i).getString("artist"),
-            					jsonDisks.getJSONObject(i).getString("pic_path"),
-            					jsonDisks.getJSONObject(i).getString("conditions"),
-            					jsonDisks.getJSONObject(i).getString("interest")));
+            					jsonDisks.getJSONObject(i).getString("status")));
 	                }
 
 	               
