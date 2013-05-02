@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -144,6 +143,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 								profilePictureView.setProfileId(user.getId());
 								// Set the Textview's text to the user's name.
 								userNameView.setText(user.getName());
+								//user.asMap().get("email");
 							}
 						}
 						if (response.getError() != null) {
@@ -158,9 +158,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this.getActivity(), Item_details.class);
 		intent.putExtra("disk", selected_disk);
-		Log.w("[DISK DETAILS]", selected_disk.getTitle());
-		Log.w("[DISK DETAILS]", selected_disk.getConditions());
-		Log.w("[DISK DETAILS]", selected_disk.getInterest());
 		startActivity(intent);
 	}
 
@@ -175,6 +172,12 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		GetDisksTask getDisksTask = new GetDisksTask(view.getContext());
 		getDisksTask.setMessageLoading("Loading Disks...");
 		getDisksTask.execute(url);
+	}
+	
+	private void loadUserFromAPI(String url, View view) {
+		GetUserTask getUserTask = new GetUserTask(view.getContext());
+		getUserTask.setMessageError("Saving user information...");
+		getUserTask.execute(url);
 	}
 
 	private class GetDisksTask extends UrlJsonAsyncTask {
@@ -209,6 +212,22 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 						.show();
 			} finally {
 				super.onPostExecute(json);
+			}
+		}
+	}
+	
+	private class GetUserTask extends UrlJsonAsyncTask {
+		public GetUserTask(Context context) {
+			super(context);
+		}
+		
+		@Override
+		protected void onPostExecute(JSONObject json) {
+			try {
+				JSONObject jsonUser = json.getJSONObject("user");
+				int userId = jsonUser.getInt("id");
+			} catch (Exception e) { // The user most probably does not exist in DB
+				// Save user into DB
 			}
 		}
 	}
