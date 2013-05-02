@@ -6,64 +6,88 @@
     android:background="@color/bg_color"
     android:orientation="vertical" >
 
+    <com.facebook.widget.ProfilePictureView
+        android:id="@+id/offer_profile_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="19dp"
+        android:contentDescription="@string/image"
+        facebook:preset_size="normal" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageView2"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="14dp"
+        android:layout_below="@+id/offer_profile_pic"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="16dp"
         android:text="@string/disk_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/red" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="41dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="@string/your_offer" >
-
-        <requestFocus />
-    </EditText>
-
-    <com.facebook.widget.ProfilePictureView
-        android:id="@+id/offer_profile_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="28dp"
-        android:contentDescription="@string/image"
-        facebook:preset_size="normal" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="34dp"
-        android:background="@color/orange"
-        android:text="@string/send"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="@dimen/button_textr" />
+        android:textColor="@color/red"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/button1"
-        android:layout_marginRight="14dp"
-        android:layout_marginTop="56dp"
+        android:layout_alignBottom="@+id/offer_profile_pic"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_marginBottom="26dp"
         android:contentDescription="@string/image"
         android:src="@drawable/disk" />
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="@string/message"
+        android:textColor="@color/blue"
+        android:minLines="5" />
+    
+         <LinearLayout
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/editText1"
+         android:layout_marginTop="30dp"
+         android:gravity="center_horizontal"
+         android:weightSum="1.0" >
+
+         <Button
+             android:id="@+id/button1"
+             style="@style/ButtonText"
+             android:layout_width="0dp"
+             android:layout_height="fill_parent"
+             android:layout_gravity="bottom"
+             android:layout_marginBottom="10dp"
+             android:layout_weight="0.5"
+             android:background="@drawable/custom_btn"
+             android:minWidth="50dip"
+             android:text="@string/send"
+             android:textColor="@color/white"
+             android:textSize="@dimen/button_textr" />
+         
+         <ImageButton
+             android:id="@+id/home"
+             style="@style/ButtonText"
+             android:layout_width="0dp"
+             android:layout_height="fill_parent"
+             android:layout_gravity="bottom"
+             android:layout_marginBottom="10dp"
+             android:layout_weight="0.5"
+             android:background="@drawable/custom_btn_blue"
+             android:minWidth="50dip"
+             android:src="@drawable/home"
+             android:textColor="@color/white"
+             android:textSize="@dimen/button_textr" />
+
+     </LinearLayout>
 </RelativeLayout>
