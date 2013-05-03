@@ -1,8 +1,10 @@
 package com.niceapps.app;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -33,8 +35,13 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	View view;
 	ListView disksListView;
 	private static final String DISKS_URL = "http://niceapps.herokuapp.com/disks.json";
+	private static final String USERS_URL = "http://niceapps.herokuapp.com/users/";
+	
 	private ProfilePictureView profilePictureView;
 	private TextView userNameView;
+	
+	private String fbusername;
+	private String fbemail;
 
 	private static final int REAUTH_ACTIVITY_CODE = 100;
 
@@ -95,12 +102,20 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		// Check for an open session
 	    Session session = Session.getActiveSession();
 	    if (session != null && session.isOpened()) {
+	    	// Set email permission
+	    	session.openForRead(new Session.OpenRequest(this).setPermissions(Arrays.asList("email")));
 	        // Get the user's data
 	        makeMeRequest(session);
 	    }
 	    loadDisksFromAPI(DISKS_URL, view);
 	    disksListView = (ListView) view.findViewById (R.id.my_items);
     	disksListView.setOnItemClickListener(this);
+    	
+    	((Button) view.findViewById(R.id.inbox)).setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				view_messages(view);
+			}
+		});
         
         ((Button) view.findViewById(R.id.more_items)).setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
@@ -143,7 +158,14 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 								profilePictureView.setProfileId(user.getId());
 								// Set the Textview's text to the user's name.
 								userNameView.setText(user.getName());
-								//user.asMap().get("email");
+								
+								// Set up user variables
+								fbusername = user.getName();
+								fbemail = (String) user.asMap().get("email");
+								
+								//Log.i("[EMAIL]", (String) user.asMap().get("email"));
+								// Save user into DB
+								saveUserToDB();
 							}
 						}
 						if (response.getError() != null) {
@@ -167,6 +189,13 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		Intent intent = new Intent(this.getActivity(), YourItems.class);
 		startActivity(intent);
 	}	
+	
+	/** Called when the user clicks 'See Messages' button */
+	public void view_messages(View view) {
+		// Create Intent and add username as as extra
+		//Intent intent = new Intent(this.getActivity(), YourItems.class);
+		//startActivity(intent);
+	}
 
 	private void loadDisksFromAPI(String url, View view) {
 		GetDisksTask getDisksTask = new GetDisksTask(view.getContext());
@@ -174,10 +203,26 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		getDisksTask.execute(url);
 	}
 	
-	private void loadUserFromAPI(String url, View view) {
-		GetUserTask getUserTask = new GetUserTask(view.getContext());
-		getUserTask.setMessageError("Saving user information...");
-		getUserTask.execute(url);
+	/**
+	 * This method will save the user into the server's DB.
+	 * The server will validate that the user is unique
+	 */
+	private void saveUserToDB() {
+		// JSON object to hold the information, which is sent to the server
+		JSONObject jsonObjSend = new JSONObject();
+		
+		try {
+			// Add key/value pairs
+			jsonObjSend.put("username", fbusername);
+			//jsonObjSend.put("mail", "testing@testing.com");
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		// Send the HttpPostRequest and receive a JSONObject in return
+		HttpClient.SendHttpPost(USERS_URL, jsonObjSend);		
+
 	}
 
 	private class GetDisksTask extends UrlJsonAsyncTask {
@@ -212,22 +257,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 						.show();
 			} finally {
 				super.onPostExecute(json);
-			}
-		}
-	}
-	
-	private class GetUserTask extends UrlJsonAsyncTask {
-		public GetUserTask(Context context) {
-			super(context);
-		}
-		
-		@Override
-		protected void onPostExecute(JSONObject json) {
-			try {
-				JSONObject jsonUser = json.getJSONObject("user");
-				int userId = jsonUser.getInt("id");
-			} catch (Exception e) { // The user most probably does not exist in DB
-				// Save user into DB
 			}
 		}
 	}
