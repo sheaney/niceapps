@@ -2,12 +2,15 @@ package com.niceapps.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.Request;
@@ -21,6 +24,7 @@ public class Item_details extends Activity {
 	private static String DISK_URL = "http://niceapps.herokuapp.com/disks/";
 	private String fbusername;
 	private TextView title, artist, status;
+	private ImageView diskImage;
 	private Disk disk;
 	private ProfilePictureView profilePictureView;
 
@@ -42,10 +46,16 @@ public class Item_details extends Activity {
 		title = (TextView) findViewById(R.id.textView1);
 		artist = (TextView) findViewById(R.id.artist);
 		status = (TextView) findViewById(R.id.status);
+		diskImage = (ImageView) findViewById(R.id.disk_image);
+		
 
 		title.setText(disk.getTitle());
 		artist.setText(disk.getArtist());
 		status.setText(disk.getStatus());
+		
+		// Set up image in view
+		byte[] imageAsBytes = Base64.decode(disk.getImageEncoding(), Base64.DEFAULT);
+		diskImage.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
 
 		// Find the user's profile picture custom view
 		profilePictureView = (ProfilePictureView) findViewById(R.id.item_details_profile_pic);

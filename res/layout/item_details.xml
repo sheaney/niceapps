@@ -30,7 +30,7 @@
         facebook:preset_size="normal" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/disk_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/item_details_profile_pic"

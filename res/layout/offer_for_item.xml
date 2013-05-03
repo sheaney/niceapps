@@ -30,7 +30,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/offer_disk_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/offer_profile_pic"

@@ -4,14 +4,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ public class Offer_for_item extends Activity {
 	
 	private String fbusername;
 	private TextView title;
+	private ImageView diskImage;
 	private EditText message;
 	private Disk disk;
 
@@ -48,6 +51,7 @@ public class Offer_for_item extends Activity {
 
 		title = (TextView) findViewById(R.id.textView1);
 		message = (EditText) findViewById(R.id.editText1);
+		diskImage = (ImageView) findViewById(R.id.offer_disk_image);
 
 		title.setText(disk.getTitle());
 
@@ -61,6 +65,9 @@ public class Offer_for_item extends Activity {
 			
 		}
 		
+		// Set up image in view
+		byte[] imageAsBytes = Base64.decode(disk.getImageEncoding(), Base64.DEFAULT);
+		diskImage.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
 		
 		
 		// Accion a realizar en caso de que se oprima el boton Send Offer
