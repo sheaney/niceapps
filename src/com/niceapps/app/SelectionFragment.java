@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -180,6 +181,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this.getActivity(), Item_details.class);
 		intent.putExtra("disk", selected_disk);
+		intent.putExtra("fbusername", fbusername);
 		startActivity(intent);
 	}
 
@@ -187,6 +189,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	public void more_items(View view) {
 		// Do something in response to button
 		Intent intent = new Intent(this.getActivity(), YourItems.class);
+		intent.putExtra("fbusername", fbusername);
 		startActivity(intent);
 	}	
 	
@@ -196,6 +199,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		Intent intent = new Intent(this.getActivity(), YourMessages.class);
 		intent.putExtra("username", fbusername);
 		startActivity(intent);
+
 	}
 
 	private void loadDisksFromAPI(String url, View view) {

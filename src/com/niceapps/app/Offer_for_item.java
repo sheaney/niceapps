@@ -3,27 +3,30 @@ package com.niceapps.app;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.facebook.Request;
-import com.facebook.Response;
-import com.facebook.Session;
-import com.facebook.model.GraphUser;
-import com.facebook.widget.ProfilePictureView;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.model.GraphUser;
+import com.facebook.widget.ProfilePictureView;
 
 public class Offer_for_item extends Activity {
 	
 	private static final String URL = "http://niceapps.herokuapp.com/messages/";
 	private static final String TAG = "Msg_to_admin";
 	
+	private String fbusername;
 	private TextView title;
 	private EditText message;
 	private Disk disk;
@@ -35,6 +38,13 @@ public class Offer_for_item extends Activity {
 		setContentView(R.layout.offer_for_item);
 
 		disk = (Disk) getIntent().getSerializableExtra("disk");
+		
+		if(getIntent().hasExtra("fbusername")){
+			fbusername = getIntent().getStringExtra("fbusername");
+		}
+		else {
+			fbusername = "Not available";
+		}
 
 		title = (TextView) findViewById(R.id.textView1);
 		message = (EditText) findViewById(R.id.editText1);
@@ -60,7 +70,19 @@ public class Offer_for_item extends Activity {
 						send_msg(); // Manda llamar al m�todo send_offer
 					}
 				});
+		
+		((ImageButton) findViewById(R.id.home))
+		.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				go_home(); // Manda llamar al metodo go_home
+			}
+		});
 	}
+	
+	private void go_home() {
+		finish();
+	}
+	
 
 	private void send_msg() {
 		// JSON object to hold the information, which is sent to the server
@@ -70,7 +92,7 @@ public class Offer_for_item extends Activity {
 			// Add key/value pairs
 			jsonObjSend.put("content", message.getText().toString());
 			jsonObjSend.put("disk_id", disk.getId());
-			jsonObjSend.put("user_id", 1); //Hardcodeado
+			jsonObjSend.put("username", fbusername);
 
 			// Output the JSON object we're sending to Logcat:
 			Log.i(TAG, jsonObjSend.toString(2));
@@ -82,10 +104,10 @@ public class Offer_for_item extends Activity {
 		// Send the HttpPostRequest and receive a JSONObject in return
 		JSONObject jsonObjRecv = HttpClient.SendHttpPost(URL, jsonObjSend);
 		
-		// Se tiene que crear nueva oferta aqui
-		
+		//if(jsonObjRecv.get(name))
 		String msg = "Message for " + disk.getTitle() + " sent to Musicbox..";
 		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+		message.setText("");
 	}
 	
 	private void makeMeRequest(final Session session) {
