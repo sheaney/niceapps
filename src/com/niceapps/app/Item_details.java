@@ -1,21 +1,25 @@
 package com.niceapps.app;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
-
 public class Item_details extends Activity {
+	
 	private static String DISK_URL = "http://niceapps.herokuapp.com/disks/";
+	private String fbusername;
 	private TextView title, artist, status;
 	private Disk disk;
 	private ProfilePictureView profilePictureView;
@@ -23,10 +27,18 @@ public class Item_details extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.item_details);
-
-		disk = (Disk) getIntent().getSerializableExtra("disk");
+		
+		Intent intent = getIntent();
+		disk = (Disk) intent.getSerializableExtra("disk");
 		DISK_URL += disk.getId() + ".json";
-
+		
+		if(intent.hasExtra("fbusername")){
+			fbusername = intent.getStringExtra("fbusername");
+		}
+		else {
+			fbusername = "Not available";
+		}
+		
 		title = (TextView) findViewById(R.id.textView1);
 		artist = (TextView) findViewById(R.id.artist);
 		status = (TextView) findViewById(R.id.status);
@@ -51,8 +63,9 @@ public class Item_details extends Activity {
 						send_message(); // Manda llamar al m�todo send_offer
 					}
 				});
-		((Button) findViewById(R.id.home))
-		.setOnClickListener(new OnClickListener() {
+		
+		((ImageButton)findViewById(R.id.home))
+		.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				go_home(); // Manda llamar al m�todo send_offer
 			}
@@ -62,14 +75,19 @@ public class Item_details extends Activity {
 	private void send_message() {
 		Intent intent = new Intent(getBaseContext(), Offer_for_item.class);
 		intent.putExtra("disk", disk);
+		intent.putExtra("fbusername", fbusername);
 		startActivity(intent);
 	}
 	
 	private void go_home() {
-		Intent intent = new Intent(getBaseContext(), SelectionFragment.class);
-		startActivity(intent);
+		finish();
 	}
 	
+	@Override
+	public void onStop() {
+		super.onStop();
+		finish();
+	}
 	private void makeMeRequest(final Session session) {
 		// Make an API call to get user data and define a
 		// new callback to handle the response.

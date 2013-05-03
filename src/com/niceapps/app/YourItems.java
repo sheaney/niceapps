@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,6 +24,7 @@ public class YourItems extends Activity implements OnItemClickListener {
 	
 	private static final String DISKS_URL = "http://niceapps.herokuapp.com/disks.json";
 	
+	String fbusername;
 	ListView listView;
 	ArrayAdapter<String> adapter;
 	List<String> strs;
@@ -32,6 +34,12 @@ public class YourItems extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.your_items);
         
+        if(getIntent().hasExtra("fbusername")){
+			fbusername = getIntent().getStringExtra("fbusername");
+		}
+		else {
+			fbusername = "Not available";
+		}
         loadDisksFromAPI(DISKS_URL);
         
 	}
@@ -40,9 +48,15 @@ public class YourItems extends Activity implements OnItemClickListener {
 		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this, Item_details.class);
 		intent.putExtra("disk", selected_disk);
+		intent.putExtra("fbusername", fbusername);
 		startActivity(intent);
 	}
 	
+	@Override
+	public void onStop() {
+		super.onStop();
+		finish();
+	}
 	private void loadDisksFromAPI(String url) {
 	    GetDisksTask getDisksTask = new GetDisksTask(YourItems.this);
 	    getDisksTask.setMessageLoading("Loading Disks...");

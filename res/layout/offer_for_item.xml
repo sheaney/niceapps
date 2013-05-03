@@ -39,13 +39,30 @@
         android:contentDescription="@string/image"
         android:src="@drawable/disk" />
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/message"
+        android:inputType="textMultiLine"
+        android:minLines="5"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
+        android:textColor="@color/blue"
+        android:textColorHint="@color/blue" >
+    </EditText>
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:gravity="center_horizontal"
+        android:gravity="bottom"
         android:weightSum="1.0" >
 
         <Button
@@ -53,7 +70,6 @@
             style="@style/ButtonText"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:layout_weight="0.5"
             android:background="@drawable/custom_btn"
@@ -76,23 +92,6 @@
             android:src="@drawable/homenice"
             android:textColor="@color/white"
             android:textSize="@dimen/button_textr" />
-
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="55dp"
-        android:ems="10"
-        android:hint="@string/message"
-        android:inputType="textMultiLine"
-        android:minLines="5"
-        android:scrollbarStyle="outsideOverlay"
-        android:scrollbars="vertical"
-        android:textColor="@color/blue"
-        android:textColorHint="@color/blue" />
 
 </RelativeLayout>
