@@ -2,7 +2,6 @@
 <resources>
 	<string name="app_id">315507228578926</string>
     <string name="app_name">NiceApps</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <color name="bg_color">#F7F5DE</color>
     <color name="yellow">#F4BC03</color>
@@ -12,29 +11,24 @@
     <color name="white">#ffffff</color>
     <string name="login">Login</string>
     <string name="app_description">Vinyl disks: Give one, Get one !</string>
-    <string name="search_bar">Search Item&#8230;</string>
-    <string name="new_item">New Item</string>
     <string name="description">Description</string>
     <string name="search_pictures">Search Pictures</string>
-    <string name="send_to">Send To</string>
-    <string name="upload">Upload</string>
     <string name="more_items">MORE&#8230;</string>
     <string name="disk_title">Disk Title</string>
     <string name="disk_artist">Artist Name</string>
     <string name="disk_status">Status Info</string>
-    <string name="delete">Delete</string>
     <string name="interested">I WANT IT</string>
-    <string name="your_offer">Your Offer&#8230;</string>
     <string name="send">SEND</string>
     <string name="image">image</string>
-    <string name="accept">Accept</string>
-    <string name="reject">Reject</string>
     <string name="message">Message about offer</string>
     <string name="integrante_samuel">Samuel Heaney</string>
     <string name="integrante_abi">Abigail Sosa</string>
     <string name="developed">Developed by NiceApps</string>
     <string name="view_offers">View Offers (3)</string>
     <string name="inbox">SEE MESSAGES</string>
+    <string name="status_label">Status:</string>
+    <string name="artist_label">Artist:</string>
+    <string name="title_label">Title:</string>
     
     <style name="ButtonText">
     <item name="android:layout_width">fill_parent</item>
