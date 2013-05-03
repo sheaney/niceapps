@@ -10,6 +10,7 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,6 +61,18 @@ public class Offer_for_item extends Activity {
 						send_msg(); // Manda llamar al m�todo send_offer
 					}
 				});
+		
+		((Button) findViewById(R.id.home))
+		.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				go_home(); // Manda llamar al metodo go_home
+			}
+		});
+	}
+	
+	private void go_home() {
+		Intent intent = new Intent(getBaseContext(), SelectionFragment.class);
+		startActivity(intent);
 	}
 
 	private void send_msg() {
@@ -70,7 +83,7 @@ public class Offer_for_item extends Activity {
 			// Add key/value pairs
 			jsonObjSend.put("content", message.getText().toString());
 			jsonObjSend.put("disk_id", disk.getId());
-			jsonObjSend.put("user_id", 1); //Hardcodeado
+			jsonObjSend.put("username", 1); //Hardcodeado
 
 			// Output the JSON object we're sending to Logcat:
 			Log.i(TAG, jsonObjSend.toString(2));
@@ -81,8 +94,6 @@ public class Offer_for_item extends Activity {
 		
 		// Send the HttpPostRequest and receive a JSONObject in return
 		JSONObject jsonObjRecv = HttpClient.SendHttpPost(URL, jsonObjSend);
-		
-		// Se tiene que crear nueva oferta aqui
 		
 		String msg = "Message for " + disk.getTitle() + " sent to Musicbox..";
 		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();

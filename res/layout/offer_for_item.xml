@@ -71,10 +71,12 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="0.5"
             android:background="@drawable/custom_btn_blue"
+            android:contentDescription="@string/image"
             android:minWidth="50dip"
             android:src="@drawable/homenice"
             android:textColor="@color/white"
             android:textSize="@dimen/button_textr" />
+
     </LinearLayout>
 
     <EditText
@@ -88,6 +90,8 @@
         android:hint="@string/message"
         android:inputType="textMultiLine"
         android:minLines="5"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
         android:textColor="@color/blue"
         android:textColorHint="@color/blue" />
 

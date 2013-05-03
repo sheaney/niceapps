@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class Item_details extends Activity {
 	private static String DISK_URL = "http://niceapps.herokuapp.com/disks/";
-	private TextView title, artist, status, type;
+	private TextView title, artist, status;
 	private Disk disk;
 	private ProfilePictureView profilePictureView;
 
@@ -51,11 +51,22 @@ public class Item_details extends Activity {
 						send_message(); // Manda llamar al m�todo send_offer
 					}
 				});
+		((Button) findViewById(R.id.home))
+		.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				go_home(); // Manda llamar al m�todo send_offer
+			}
+		});
 	}
 
 	private void send_message() {
 		Intent intent = new Intent(getBaseContext(), Offer_for_item.class);
 		intent.putExtra("disk", disk);
+		startActivity(intent);
+	}
+	
+	private void go_home() {
+		Intent intent = new Intent(getBaseContext(), SelectionFragment.class);
 		startActivity(intent);
 	}
 	

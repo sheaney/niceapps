@@ -20,7 +20,7 @@
     <string name="interested">I WANT IT</string>
     <string name="send">SEND</string>
     <string name="image">image</string>
-    <string name="message">Message about offer</string>
+    <string name="message">Message to MusicBox Admin..</string>
     <string name="integrante_samuel">Samuel Heaney</string>
     <string name="integrante_abi">Abigail Sosa</string>
     <string name="developed">Developed by NiceApps</string>
@@ -29,6 +29,8 @@
     <string name="status_label">Status:</string>
     <string name="artist_label">Artist:</string>
     <string name="title_label">Title:</string>
+    <string name="back_msg">MESSAGES</string>
+    <string name="from_mb">Reply from MusicBox:</string>
     
     <style name="ButtonText">
     <item name="android:layout_width">fill_parent</item>
