@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -218,7 +217,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		
 		try {
 			// Add key/value pairs
-			jsonObjSend.put("username", fbusername);
+			jsonObjSend.put("username", normalizeString(fbusername));
 			//jsonObjSend.put("mail", "testing@testing.com");
 			
 		} catch (JSONException e) {
@@ -228,6 +227,26 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		// Send the HttpPostRequest and receive a JSONObject in return
 		HttpClient.SendHttpPost(USERS_URL, jsonObjSend);		
 
+	}
+	
+	/**
+	 * Will return a new String in the format 'xxx-yyy'
+	 * e.g. normalizeString("Foo Bar.") => "foo-bar"
+	 * 
+	 * @param str is the String that will be normalized
+	 * @return a new immutable String replacing spaces with '-'
+	 */
+	private String normalizeString(String str) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < str.length(); i++) {
+			char c = str.charAt(i);
+			if (c == ' ')
+				sb.append('-');
+			else if (c != '.')
+				sb.append(Character.toLowerCase(c));
+		}
+		
+		return sb.toString();
 	}
 
 	private class GetDisksTask extends UrlJsonAsyncTask {
@@ -253,7 +272,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 				}
 
 				if (disksListView != null) {
-					CustomAdapter customAdapter = new CustomAdapter(
+					CustomAdapter<Disk> customAdapter = new CustomAdapter<Disk>(
 							view.getContext(), disks);
 					disksListView.setAdapter(customAdapter);
 				}
