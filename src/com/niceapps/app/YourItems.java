@@ -71,7 +71,7 @@ public class YourItems extends Activity implements OnItemClickListener {
 
 	                ListView disksListView = (ListView) findViewById (R.id.list);
 	                if (disksListView != null) {
-	                	CustomAdapter customAdapter = new CustomAdapter(YourItems.this, disks);
+	                	CustomAdapter<Disk> customAdapter = new CustomAdapter<Disk>(YourItems.this, disks);
 	                	disksListView.setAdapter(customAdapter);
 	                	disksListView.setOnItemClickListener(YourItems.this);
 	                }

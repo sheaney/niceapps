@@ -193,8 +193,9 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	/** Called when the user clicks 'See Messages' button */
 	public void view_messages(View view) {
 		// Create Intent and add username as as extra
-		//Intent intent = new Intent(this.getActivity(), YourItems.class);
-		//startActivity(intent);
+		Intent intent = new Intent(this.getActivity(), YourMessages.class);
+		intent.putExtra("username", fbusername);
+		startActivity(intent);
 	}
 
 	private void loadDisksFromAPI(String url, View view) {

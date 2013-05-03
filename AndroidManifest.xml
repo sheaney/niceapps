@@ -46,6 +46,14 @@
                 android:value="com.niceapps.app.Profile"/>
         </activity>
         <activity
+            android:name="com.niceapps.app.YourMessages"
+            android:hint="@string/app_name" 
+            android:parentActivityName="com.niceapps.app.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.niceapps.app.YourOffers"/>
+        </activity>
+        <activity
             android:name="com.niceapps.app.YourItems"
             android:hint="@string/app_name" 
             android:parentActivityName="com.niceapps.app.Profile">

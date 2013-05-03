@@ -12,10 +12,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapter<T> extends BaseAdapter {
 
 	  private LayoutInflater inflater;
-	  private ArrayList<Disk> objects;
+	  private ArrayList<T> objects;
 
 	   private class ViewHolder {
 	      TextView textView1;
@@ -23,7 +23,7 @@ public class CustomAdapter extends BaseAdapter {
 	      ImageView image;
 	   }
 
-	   public CustomAdapter(Context context, ArrayList<Disk> objects) {
+	   public CustomAdapter(Context context, ArrayList<T> objects) {
 	      inflater = LayoutInflater.from(context);
 	      this.objects = objects;
 	   }
@@ -32,7 +32,7 @@ public class CustomAdapter extends BaseAdapter {
 	      return objects.size();
 	   }
 
-	   public Disk getItem(int position) {
+	   public T getItem(int position) {
 	      return objects.get(position);
 	   }
 
@@ -41,21 +41,45 @@ public class CustomAdapter extends BaseAdapter {
 	   }
 
 	   public View getView(int position, View convertView, ViewGroup parent) {
-	      ViewHolder holder = null;
-	      if(convertView == null) {
-	        holder = new ViewHolder();
-	        convertView = inflater.inflate(R.layout.list_row_vinyl, null);
-	        holder.textView1 = (TextView) convertView.findViewById(R.id.title);
-	        holder.textView2 = (TextView) convertView.findViewById(R.id.artist);
-	         convertView.setTag(holder);
-	      } else {
-	         holder = (ViewHolder) convertView.getTag();
+	      if (objects.get(position) instanceof Disk) {
+	    	  ViewHolder holder = null;
+		      if(convertView == null) {
+		        holder = new ViewHolder();
+		        convertView = inflater.inflate(R.layout.list_row_vinyl, null);
+		        holder.textView1 = (TextView) convertView.findViewById(R.id.title);
+		        holder.textView2 = (TextView) convertView.findViewById(R.id.artist);
+		         convertView.setTag(holder);
+		      } else {
+		         holder = (ViewHolder) convertView.getTag();
+		      }
+	    	  
+	    	  Disk disk = (Disk) objects.get(position);
+	    	  
+		      holder.textView1.setText(disk.getTitle());
+		      holder.textView2.setText(disk.getArtist());
+		      
+		      // decode image & set it up in the view
+		      decodeBase64ImageAndSetHolder(convertView, holder, disk.getImageEncoding());
+	      } else if (objects.get(position) instanceof Message) {
+	    	  ViewHolder holder = null;
+		      if(convertView == null) {
+		        holder = new ViewHolder();
+		        convertView = inflater.inflate(R.layout.list_row_message, null);
+		        holder.textView1 = (TextView) convertView.findViewById(R.id.title);
+		        holder.textView2 = (TextView) convertView.findViewById(R.id.message_content);
+		         convertView.setTag(holder);
+		      } else {
+		         holder = (ViewHolder) convertView.getTag();
+		      }
+	    	  
+	    	  Message message = (Message) objects.get(position);
+	    	  
+		      holder.textView1.setText(message.getTitle());
+		      holder.textView2.setText(message.getContent());
+		      
+		      // decode image & set it up in the view
+		      decodeBase64ImageAndSetHolder(convertView, holder, message.getImageEncoding());
 	      }
-	      holder.textView1.setText(objects.get(position).getTitle());
-	      holder.textView2.setText(objects.get(position).getArtist());
-	      
-	      // decode image & set it up in the view
-	      decodeBase64ImageAndSetHolder(convertView, holder, objects.get(position).getImageEncoding());
 	      
 	      return convertView;
 	   }

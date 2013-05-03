@@ -5,15 +5,51 @@
     android:background="@drawable/list_selector"
     android:orientation="horizontal"
     android:padding="5dip" >
+ 
+    <!--  ListRow Left sied Thumbnail image -->
+    <LinearLayout android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/image_bg"
+        android:layout_marginRight="5dip">
+ 
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:contentDescription="@string/image"
+            android:src="@drawable/example_cover" />
+ 
+    </LinearLayout>
+ 
+    <!-- Title Of Song-->
 
-
-    <!-- Message Content -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="Radiohead Best Hits"
+        android:textColor="@color/red"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+ 
+    <!-- Artist Name -->
 
     <TextView
         android:id="@+id/message_content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/title"
         android:layout_marginTop="1dip"
-        android:textColor="#343434" />
-
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="Test description ..."
+        android:textColor="@color/orange"
+        android:textSize="10sp"
+        android:textStyle="italic" />
+ 
 </RelativeLayout>
