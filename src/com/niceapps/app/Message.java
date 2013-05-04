@@ -1,6 +1,8 @@
 package com.niceapps.app;
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
 	String imageEncoding;
 	String title;
 	String content;

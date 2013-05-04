@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -38,11 +39,16 @@ public class YourMessages extends Activity implements OnItemClickListener {
 
 	}
 
+	@Override
+	public void onStop() {
+		super.onStop();
+		finish();
+	}
 	// This will not work for now
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		Message selected_message = (Message) parent.getItemAtPosition(pos);
-		Intent intent = new Intent(this, Item_details.class);
-		//intent.putExtra("disk", selected_disk);
+		Intent intent = new Intent(this, Message_detail.class);
+		intent.putExtra("message", selected_message);
 		startActivity(intent);
 	}
 

@@ -38,6 +38,15 @@
                 android:value="com.niceapps.app.Login"/>
         </activity>
         <activity
+            android:name="com.niceapps.app.Message_detail"
+            android:hint="@string/app_name" 
+            android:windowSoftInputMode="stateHidden"
+            android:parentActivityName="com.niceapps.app.YourMessages">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.niceapps.app.YourMessages"/>
+        </activity>
+        <activity
             android:name="com.niceapps.app.UploadItem"
             android:hint="@string/app_name" 
             android:parentActivityName="com.niceapps.app.Profile">
