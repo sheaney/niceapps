@@ -1,7 +1,6 @@
 package com.niceapps.app;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,22 +9,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.savagelook.android.UrlJsonAsyncTask;
 
+/**
+ * 
+ * @author Abigail S Hdz, Samuel Heaney
+ *
+ */
 public class YourMessages extends Activity implements OnItemClickListener {
 	private static final String MESSAGES_URL = "http://niceapps.herokuapp.com/msg_disk/";
-
-	ListView listView;
-	ArrayAdapter<String> adapter;
-	List<String> strs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,11 @@ public class YourMessages extends Activity implements OnItemClickListener {
 		super.onStop();
 		finish();
 	}
-	// This will not work for now
+
+	/*
+	 * (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+	 */
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		Message selected_message = (Message) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this, Message_detail.class);
@@ -52,12 +54,29 @@ public class YourMessages extends Activity implements OnItemClickListener {
 		startActivity(intent);
 	}
 
+	/**
+	 * 
+	 * Will instantiate a GetMessagesTask which will use an AsycTask to fetch
+	 * all the messages associated to a user and a disk stored in a server side DB. 
+	 * Side effects include setting up a ListView with the proper disk information 
+	 * and a "Loading Inbox..." message. 
+	 * 
+	 * @param url is the address where the GET request will be sent to
+	 * @param view represents the ListView that will be populated
+	 */
 	private void loadMessagesFromAPI(String url) {
 		GetMessagesTask getMessagesTask = new GetMessagesTask(YourMessages.this);
 		getMessagesTask.setMessageLoading("Loading Inbox...");
 		getMessagesTask.execute(url);
 	}
 
+	/**
+	 * Represents a task that will execute asynchronously and fetch a JSONObject
+	 * representing Messages
+	 * 
+	 * @author Abigail S Hdz, Samuel Heaney
+	 *
+	 */
 	private class GetMessagesTask extends UrlJsonAsyncTask {
 		public GetMessagesTask(Context context) {
 			super(context);

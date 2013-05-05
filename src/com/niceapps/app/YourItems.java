@@ -5,13 +5,11 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.savagelook.android.UrlJsonAsyncTask;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,7 +17,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.savagelook.android.UrlJsonAsyncTask;
 
+/**
+ * 
+ * @author Abigail S Hdz, Samuel Heaney
+ *
+ */
 public class YourItems extends Activity implements OnItemClickListener {
 	
 	private static final String DISKS_URL = "http://niceapps.herokuapp.com/disks.json";
@@ -44,6 +48,10 @@ public class YourItems extends Activity implements OnItemClickListener {
         
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+	 */
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this, Item_details.class);
@@ -57,12 +65,29 @@ public class YourItems extends Activity implements OnItemClickListener {
 		super.onStop();
 		finish();
 	}
+	
+	/**
+	 * 
+	 * Will instantiate a GetDisksTask which will use an AsycTask to fetch
+	 * all the disks stored in a server side DB. Side effects include setting up 
+	 * a ListView with the proper disk information and a "Loading Disks..." message. 
+	 * 
+	 * @param url is the address where the GET request will be sent to
+	 * @param view represents the ListView that will be populated
+	 */
 	private void loadDisksFromAPI(String url) {
 	    GetDisksTask getDisksTask = new GetDisksTask(YourItems.this);
 	    getDisksTask.setMessageLoading("Loading Disks...");
 	    getDisksTask.execute(url);
 	}
 	
+	/**
+	 * Represents a task that will execute asynchronously and fetch a JSONObject
+	 * representing Disks
+	 * 
+	 * @author Abigail S Hdz, Samuel Heaney
+	 *
+	 */
 	private class GetDisksTask extends UrlJsonAsyncTask {
 	    public GetDisksTask(Context context) {
 	        super(context);

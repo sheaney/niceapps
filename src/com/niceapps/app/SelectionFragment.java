@@ -30,6 +30,11 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 import com.savagelook.android.UrlJsonAsyncTask;
 
+/**
+ * 
+ * @author Abigail S Hdz, Samuel Heaney
+ *
+ */
 public class SelectionFragment extends Fragment implements OnItemClickListener {
 	View view;
 	ListView disksListView;
@@ -203,7 +208,11 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		startActivity(intent);
 	}
 
-	/** Called when the user clicks the 'More' button */
+	/**
+	 * Called when the user clicks the 'More' button
+	 *  
+	 * @param view represents the View from where the method was called
+	 */
 	public void more_items(View view) {
 		// Do something in response to button
 		Intent intent = new Intent(this.getActivity(), YourItems.class);
@@ -211,7 +220,11 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		startActivity(intent);
 	}	
 	
-	/** Called when the user clicks 'See Messages' button */
+	/**
+	 * Called when the user clicks 'See Messages' button
+	 * 
+	 * @param view represents the View from where the method was called
+	 */
 	public void view_messages(View view) {
 		// Create Intent and add username as as extra
 		Intent intent = new Intent(this.getActivity(), YourMessages.class);
@@ -246,8 +259,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		try {
 			// Add key/value pairs
 			jsonObjSend.put("username", normalizeString(fbusername));
-			//jsonObjSend.put("mail", "testing@testing.com");
-			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -281,7 +292,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	 * Represents a task that will execute asynchronously and fetch a JSONObject
 	 * representing Disks
 	 * 
-	 * @author Abigail S Hdz
+	 * @author Abigail S Hdz, Samuel Heaney
 	 *
 	 */
 	private class GetDisksTask extends UrlJsonAsyncTask {
