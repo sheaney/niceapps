@@ -33,7 +33,7 @@
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
         android:text="Radiohead Best Hits"
-        android:textColor="@color/red"
+        android:textColor="@color/blue"
         android:textSize="15sp"
         android:textStyle="bold"
         android:typeface="sans" />

@@ -10,7 +10,7 @@
     <color name="blue">#156B68</color>
     <color name="white">#ffffff</color>
     <string name="login">Login</string>
-    <string name="app_description">Vinyl disks: Give one, Get one !</string>
+    <string name="app_description">Give one, Get one !</string>
     <string name="description">Description</string>
     <string name="search_pictures">Search Pictures</string>
     <string name="more_items">MORE&#8230;</string>

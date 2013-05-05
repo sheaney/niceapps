@@ -97,9 +97,8 @@
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
         android:text="@string/from_mb"
         android:textColor="@color/blue"
         android:textSize="19sp" />
