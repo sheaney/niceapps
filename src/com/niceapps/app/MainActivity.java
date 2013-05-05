@@ -99,6 +99,13 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
+	/**
+	 * Method in charge of displaying the specified fragment in the
+	 * main layout.
+	 * 
+	 * @param fragmentIndex indicates which fragment to display
+	 * @param addToBackStack 
+	 */
 	private void showFragment(int fragmentIndex, boolean addToBackStack) {
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction transaction = fm.beginTransaction();
@@ -115,6 +122,14 @@ public class MainActivity extends FragmentActivity {
 		transaction.commit();
 	}
 
+	/**
+	 * Verifies the current state of the app and displays the corresponding
+	 * fragment.
+	 * 
+	 * @param session is used to authenticate the user
+	 * @param state of the session
+	 * @param exception that might be thrown
+	 */
 	private void onSessionStateChange(Session session, SessionState state,
 			Exception exception) {
 		// Only make changes if the activity is visible
