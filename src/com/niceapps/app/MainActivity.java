@@ -12,6 +12,7 @@ import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 
 /**
+ * Activity that will run when the app is first boots
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *

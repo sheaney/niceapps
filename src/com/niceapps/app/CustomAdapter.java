@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
+ * Class that will help represent content for a List View.
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *

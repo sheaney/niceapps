@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.savagelook.android.UrlJsonAsyncTask;
 
 /**
+ * Activity that will render a List View representing all the Items that are in the
+ * server's DB
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *
@@ -72,7 +74,7 @@ public class YourItems extends Activity implements OnItemClickListener {
 	 */
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
-		Intent intent = new Intent(this, Item_details.class);
+		Intent intent = new Intent(this, ItemDetails.class);
 		intent.putExtra("disk", selected_disk);
 		intent.putExtra("fbusername", fbusername);
 		startActivity(intent);

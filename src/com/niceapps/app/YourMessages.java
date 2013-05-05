@@ -19,7 +19,9 @@ import android.widget.Toast;
 import com.savagelook.android.UrlJsonAsyncTask;
 
 /**
- * 
+ * Activity that will render a List View representing all the Messages that are in the
+ * server's DB
+ *  
  * @author Abigail S Hdz, Samuel Heaney
  *
  */
@@ -66,7 +68,7 @@ public class YourMessages extends Activity implements OnItemClickListener {
 	 */
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		Message selected_message = (Message) parent.getItemAtPosition(pos);
-		Intent intent = new Intent(this, Message_detail.class);
+		Intent intent = new Intent(this, MessageDetail.class);
 		intent.putExtra("message", selected_message);
 		startActivity(intent);
 	}

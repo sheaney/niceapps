@@ -24,11 +24,12 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
 /**
+ * Activity that will permit the user to post a message to the server
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *
  */
-public class Offer_for_item extends Activity {
+public class OfferForItem extends Activity {
 	
 	private static final String URL = "http://niceapps.herokuapp.com/messages/";
 	private static final String TAG = "Msg_to_admin";

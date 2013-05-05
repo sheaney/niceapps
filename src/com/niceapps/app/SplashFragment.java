@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * Fragment that is displayed when the user has not been authenticated by Facebook
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *

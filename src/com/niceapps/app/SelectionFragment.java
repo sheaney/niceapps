@@ -31,6 +31,7 @@ import com.facebook.widget.ProfilePictureView;
 import com.savagelook.android.UrlJsonAsyncTask;
 
 /**
+ * Fragment that will be displayed once the user is authenticated with Facebook
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *
@@ -202,7 +203,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	 */
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
-		Intent intent = new Intent(this.getActivity(), Item_details.class);
+		Intent intent = new Intent(this.getActivity(), ItemDetails.class);
 		intent.putExtra("disk", selected_disk);
 		intent.putExtra("fbusername", normalizeString(fbusername));
 		startActivity(intent);

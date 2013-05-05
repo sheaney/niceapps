@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="/home/sheaney/src/android-sdk-linux/platforms/android-17/android.jar:/home/sheaney/src/facebook-android-sdk-3.0.1/facebook/libs/android-support-v4.jar:/home/sheaney/src/facebook-android-sdk-3.0.1/facebook/bin/facebooksdk.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="1.6" sourcefiles="src/com/niceapps/app/SelectionFragment.java" sourcepath="src:gen" splitindex="true" use="true" version="true">
+            <link href="file:/home/sheaney/workspace/NiceApps/doc/"/>
+            <link href="file:/home/sheaney/src/android-sdk-linux/docs/reference"/>
+        </javadoc>
+    </target>
+</project>

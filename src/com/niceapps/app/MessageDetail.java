@@ -19,11 +19,12 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
 /**
+ * Activity that will represent the details of a message
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *
  */
-public class Message_detail extends Activity {
+public class MessageDetail extends Activity {
 	
 	private String fbusername;
 	private TextView title, msg_content;

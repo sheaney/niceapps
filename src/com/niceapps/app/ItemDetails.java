@@ -19,11 +19,12 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
 /**
+ * Activity in charge of displaying the details of a selected item by the user
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *
  */
-public class Item_details extends Activity {
+public class ItemDetails extends Activity {
 	
 	private String fbusername;
 	private TextView title, artist, status;
@@ -89,7 +90,7 @@ public class Item_details extends Activity {
 	 * Will make a POST request that will insert the message data into the server's DB 
 	 */
 	private void send_message() {
-		Intent intent = new Intent(getBaseContext(), Offer_for_item.class);
+		Intent intent = new Intent(getBaseContext(), OfferForItem.class);
 		intent.putExtra("disk", disk);
 		intent.putExtra("fbusername", fbusername);
 		startActivity(intent);
