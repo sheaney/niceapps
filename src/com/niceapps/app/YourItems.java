@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,8 +45,25 @@ public class YourItems extends Activity implements OnItemClickListener {
 		else {
 			fbusername = "Not available";
 		}
+        
+		// Set up action that will be triggered when user presses the Home button
+		((ImageButton)findViewById(R.id.home))
+		.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				go_home();
+			}
+		});
+		
+		// Load Disks from server response
         loadDisksFromAPI(DISKS_URL);
         
+	}
+	
+	/**
+	 * Will close the current activity and take the user to the initial Main Activity
+	 */
+	private void go_home() {
+		finish();
 	}
 	
 	/*

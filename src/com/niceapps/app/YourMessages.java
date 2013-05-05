@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,9 +34,26 @@ public class YourMessages extends Activity implements OnItemClickListener {
 		
 		String username = getIntent().getStringExtra("username");
 		
+		// Set up action that will be triggered when user presses the Home button
+		((ImageButton)findViewById(R.id.home))
+		.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				go_home();
+			}
+		});
+		
+		
+		// Load Messages from Server response
 		loadMessagesFromAPI(MESSAGES_URL + username + ".json");
 	}
 
+	/**
+	 * Will close the current activity and take the user to the initial Main Activity
+	 */
+	private void go_home() {
+		finish();
+	}
+	
 	@Override
 	public void onStop() {
 		super.onStop();
