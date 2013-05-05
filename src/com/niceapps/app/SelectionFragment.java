@@ -1,7 +1,6 @@
 package com.niceapps.app;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +33,8 @@ import com.savagelook.android.UrlJsonAsyncTask;
 public class SelectionFragment extends Fragment implements OnItemClickListener {
 	View view;
 	ListView disksListView;
+	
+	// URLs used for making requests to the web app
 	private static final String DISKS_URL = "http://niceapps.herokuapp.com/disks.json";
 	private static final String USERS_URL = "http://niceapps.herokuapp.com/users/";
 	
@@ -41,7 +42,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	private TextView userNameView;
 	
 	private String fbusername;
-	private String fbemail;
 
 	private static final int REAUTH_ACTIVITY_CODE = 100;
 
@@ -102,8 +102,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		// Check for an open session
 	    Session session = Session.getActiveSession();
 	    if (session != null && session.isOpened()) {
-	    	// Set email permission
-	    	session.openForRead(new Session.OpenRequest(this).setPermissions(Arrays.asList("email")));
 	        // Get the user's data
 	        makeMeRequest(session);
 	    }
@@ -111,12 +109,14 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	    disksListView = (ListView) view.findViewById (R.id.my_items);
     	disksListView.setOnItemClickListener(this);
     	
+    	// Add a button listener to the 'Inbox' button in the selection layout
     	((Button) view.findViewById(R.id.inbox)).setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 				view_messages(view);
 			}
 		});
-        
+
+    	// Add a button listener to the 'More...' button in the selection layout
         ((Button) view.findViewById(R.id.more_items)).setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 				more_items(view);
@@ -134,6 +134,14 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		}
 	}
 
+	/**
+	 * Verifies that the user is logged in, if not it will
+	 * call makeMeRequest() which will log the user in.
+	 * 
+	 * @param session is used to authenticate the user
+	 * @param state of the session
+	 * @param exception that might be thrown
+	 */
 	private void onSessionStateChange(final Session session,
 			SessionState state, Exception exception) {
 		if (session != null && session.isOpened()) {
@@ -142,6 +150,15 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		}
 	}
 
+	/**
+	 * Will make a request to the facebook API and return with the
+	 * some information about the user. It will then set some layout
+	 * text fields with the user image and username. It will also
+	 * make a request to the server for saving the username into 
+	 * the server's database.
+	 * 
+	 * @param session is the current state or session for the user 
+	 */
 	private void makeMeRequest(final Session session) {
 		// Make an API call to get user data and define a
 		// new callback to handle the response.
@@ -161,9 +178,7 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 								
 								// Set up user variables
 								fbusername = user.getName();
-								fbemail = (String) user.asMap().get("email");
-								
-								//Log.i("[EMAIL]", (String) user.asMap().get("email"));
+
 								// Save user into DB
 								saveUserToDB();
 							}
@@ -173,9 +188,13 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 						}
 					}
 				});
-		request.executeAsync();
+		request.executeAsync(); // Run request in the background
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+	 */
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		Disk selected_disk = (Disk) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this.getActivity(), Item_details.class);
@@ -201,6 +220,15 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 
 	}
 
+	/**
+	 * 
+	 * Will instantiate a GetDisksTask which will use an AsycTask to fetch
+	 * all the disks stored in a server side DB. Side effects include setting up 
+	 * a ListView with the proper disk information and a "Loading Disks..." message. 
+	 * 
+	 * @param url is the address where the GET request will be sent to
+	 * @param view represents the ListView that will be populated
+	 */
 	private void loadDisksFromAPI(String url, View view) {
 		GetDisksTask getDisksTask = new GetDisksTask(view.getContext());
 		getDisksTask.setMessageLoading("Loading Disks...");
@@ -249,6 +277,13 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		return sb.toString();
 	}
 
+	/**
+	 * Represents a task that will execute asynchronously and fetch a JSONObject
+	 * representing Disks
+	 * 
+	 * @author Abigail S Hdz
+	 *
+	 */
 	private class GetDisksTask extends UrlJsonAsyncTask {
 		public GetDisksTask(Context context) {
 			super(context);
