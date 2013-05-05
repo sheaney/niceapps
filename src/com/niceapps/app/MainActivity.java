@@ -11,10 +11,15 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 
+/**
+ * 
+ * @author Abigail S Hdz, Samuel Heaney
+ *
+ */
 public class MainActivity extends FragmentActivity {
 
 	private static final int SPLASH = 0;
-	private static final int SELECTION = 1;
+	private static final int SELECTION = 1; 
 	private static final int FRAGMENT_COUNT = SELECTION + 1;
 
 	private Fragment[] fragments = new Fragment[FRAGMENT_COUNT];

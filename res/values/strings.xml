@@ -21,6 +21,7 @@
     <string name="send">SEND</string>
     <string name="image">image</string>
     <string name="message">Message to MusicBox Admin..</string>
+    <string name="default_text">Loading&#8230;</string>
     <string name="integrante_samuel">Samuel Heaney</string>
     <string name="integrante_abi">Abigail Sosa</string>
     <string name="developed">Developed by NiceApps</string>

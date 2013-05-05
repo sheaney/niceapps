@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,9 +18,13 @@ import com.facebook.Session;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
+/**
+ * 
+ * @author Abigail S Hdz, Samuel Heaney
+ *
+ */
 public class Item_details extends Activity {
 	
-	private static String DISK_URL = "http://niceapps.herokuapp.com/disks/";
 	private String fbusername;
 	private TextView title, artist, status;
 	private ImageView diskImage;
@@ -34,7 +37,6 @@ public class Item_details extends Activity {
 		
 		Intent intent = getIntent();
 		disk = (Disk) intent.getSerializableExtra("disk");
-		DISK_URL += disk.getId() + ".json";
 		
 		if(intent.hasExtra("fbusername")){
 			fbusername = intent.getStringExtra("fbusername");
@@ -66,22 +68,26 @@ public class Item_details extends Activity {
 			makeMeRequest(session);
 		}
 
-		// Accion a realizar en caso de que se oprima el boton Im interested
+		// Set up action that will be triggered when user presses the Send button
 		((Button) findViewById(R.id.button2))
 				.setOnClickListener(new OnClickListener() {
 					public void onClick(View view) {
-						send_message(); // Manda llamar al m�todo send_offer
+						send_message();
 					}
 				});
 		
+		// Set up action that will be triggered when user presses the Home button
 		((ImageButton)findViewById(R.id.home))
 		.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				go_home(); // Manda llamar al m�todo send_offer
+				go_home();
 			}
 		});
 	}
 
+	/**
+	 * Will make a POST request that will insert the message data into the server's DB 
+	 */
 	private void send_message() {
 		Intent intent = new Intent(getBaseContext(), Offer_for_item.class);
 		intent.putExtra("disk", disk);
@@ -89,6 +95,9 @@ public class Item_details extends Activity {
 		startActivity(intent);
 	}
 	
+	/**
+	 * Will close the current activity and take the user to the initial Main Activity
+	 */
 	private void go_home() {
 		finish();
 	}
@@ -98,6 +107,16 @@ public class Item_details extends Activity {
 		super.onStop();
 		finish();
 	}
+	
+	/** 
+	 * Will make a request to the facebook API and return with the
+	 * some information about the user. It will then set some layout
+	 * text fields with the user image and username. It will also
+	 * make a request to the server for saving the username into 
+	 * the server's database.
+	 * 
+	 * @param session is the current state or session for the user 
+	 */
 	private void makeMeRequest(final Session session) {
 		// Make an API call to get user data and define a
 		// new callback to handle the response.

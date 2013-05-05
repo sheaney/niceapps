@@ -24,6 +24,7 @@ import com.savagelook.android.UrlJsonAsyncTask;
  */
 public class YourMessages extends Activity implements OnItemClickListener {
 	private static final String MESSAGES_URL = "http://niceapps.herokuapp.com/msg_disk/";
+	private static final String NO_MESSAGES = "Your inbox is empty";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,7 @@ public class YourMessages extends Activity implements OnItemClickListener {
 		
 		String username = getIntent().getStringExtra("username");
 		
-		loadMessagesFromAPI(MESSAGES_URL + "Abigail%20S%20Hdz" + ".json");
-		//loadMessagesFromAPI(MESSAGES_URL + username + ".json");
-
+		loadMessagesFromAPI(MESSAGES_URL + username + ".json");
 	}
 
 	@Override
@@ -89,6 +88,11 @@ public class YourMessages extends Activity implements OnItemClickListener {
 						.getJSONArray("messages");
 				int length = jsonMessages.length();
 				ArrayList<Message> messages = new ArrayList<Message>(length);
+				
+				// If the user has no messages then display a toast indicating that
+				if (length <= 0) {
+					Toast.makeText(context, NO_MESSAGES, Toast.LENGTH_LONG).show();
+				}
 
 				for (int i = 0; i < length; i++) {
 					// JSON message object

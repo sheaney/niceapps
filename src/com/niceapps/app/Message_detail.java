@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,6 +18,11 @@ import com.facebook.Session;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
+/**
+ * 
+ * @author Abigail S Hdz, Samuel Heaney
+ *
+ */
 public class Message_detail extends Activity {
 	
 	private String fbusername;
@@ -57,29 +61,32 @@ public class Message_detail extends Activity {
 		profilePictureView = (ProfilePictureView) findViewById(R.id.message_detail_profile_pic);
 		profilePictureView.setCropped(false);
 		Session session = Session.getActiveSession();
-		/*if (session != null && session.isOpened()) {
+		if (session != null && session.isOpened()) {
 			// Get the user's data
 			makeMeRequest(session);
-		}*/
+		}
 
-		// Accion a realizar en caso de que se oprima el boton Im interested
+		// Set up action that will be triggered when user presses the I'm interested button
 		((Button) findViewById(R.id.button2))
 				.setOnClickListener(new OnClickListener() {
 					public void onClick(View view) {
-						back_to_msgs(); // Manda llamar al m�todo send_offer
+						back_to_msgs();
 					}
 				});
 		
+		// Set up action that will be triggered when user presses the Home button
 		((ImageButton)findViewById(R.id.home))
 		.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				go_home(); // Manda llamar al m�todo send_offer
+				go_home();
 			}
 		});
 	}
 
+	/**
+	 * Create an Intent that adds a username string
+	 */
 	private void back_to_msgs() {
-		// Create Intent and add username as as extra
 		Intent intent = new Intent(this, YourMessages.class);
 		intent.putExtra("username", fbusername);
 		startActivity(intent);
@@ -94,6 +101,16 @@ public class Message_detail extends Activity {
 		super.onStop();
 		finish();
 	}
+	
+	/**
+	 * Will make a request to the facebook API and return with the
+	 * some information about the user. It will then set some layout
+	 * text fields with the user image and username. It will also
+	 * make a request to the server for saving the username into 
+	 * the server's database.
+	 * 
+	 * @param session is the current state or session for the user 
+	 */
 	private void makeMeRequest(final Session session) {
 		// Make an API call to get user data and define a
 		// new callback to handle the response.

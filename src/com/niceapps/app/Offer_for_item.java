@@ -23,6 +23,11 @@ import com.facebook.Session;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
+/**
+ * 
+ * @author Abigail S Hdz, Samuel Heaney
+ *
+ */
 public class Offer_for_item extends Activity {
 	
 	private static final String URL = "http://niceapps.herokuapp.com/messages/";
@@ -70,27 +75,35 @@ public class Offer_for_item extends Activity {
 		diskImage.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
 		
 		
-		// Accion a realizar en caso de que se oprima el boton Send Offer
+		// Set up action that will be triggered when user presses the Send button
 		((Button) findViewById(R.id.button1))
 				.setOnClickListener(new OnClickListener() {
 					public void onClick(View view) {
-						send_msg(); // Manda llamar al m�todo send_offer
+						send_msg();
 					}
 				});
 		
+		// Set up action that will be triggered when user pressed the Home button
 		((ImageButton) findViewById(R.id.home))
 		.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				go_home(); // Manda llamar al metodo go_home
+				go_home();
 			}
 		});
 	}
 	
+	/**
+	 * Will close the current activity and take the user to the initial Main Activity
+	 */
 	private void go_home() {
 		finish();
 	}
 	
 
+	/**
+	 * Will send a POST request to the web server with the message data
+	 * that the user inserted in the layout
+	 */
 	private void send_msg() {
 		// JSON object to hold the information, which is sent to the server
 		JSONObject jsonObjSend = new JSONObject();
@@ -109,7 +122,7 @@ public class Offer_for_item extends Activity {
 		}
 		
 		// Send the HttpPostRequest and receive a JSONObject in return
-		JSONObject jsonObjRecv = HttpClient.SendHttpPost(URL, jsonObjSend);
+		HttpClient.SendHttpPost(URL, jsonObjSend);
 		
 		//if(jsonObjRecv.get(name))
 		String msg = "Message for " + disk.getTitle() + " sent to Musicbox..";
@@ -117,6 +130,15 @@ public class Offer_for_item extends Activity {
 		message.setText("");
 	}
 	
+	/**
+	 * Will make a request to the facebook API and return with the
+	 * some information about the user. It will then set some layout
+	 * text fields with the user image and username. It will also
+	 * make a request to the server for saving the username into 
+	 * the server's database.
+	 * 
+	 * @param session is the current state or session for the user 
+	 */
 	private void makeMeRequest(final Session session) {
 		// Make an API call to get user data and define a
 		// new callback to handle the response.
