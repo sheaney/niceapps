@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Represents a Serializable class that will be passed around through
- * an Intent
+ * an Android Intent
  * 
  * @author Abigail S Hdz, Samuel Heaney
  *
@@ -17,12 +17,19 @@ public class Disk implements Serializable {
 	private int id;
 	private String title;
 	private String artist;
-	private String conditions;
-	private String interest;
 	private String status;
 	private String image_encoding; // Base 64 string encoding of the image
 	
-	
+	/**
+	 * Constructor for the Disk class that will set up all the class members on
+	 * initialization
+	 * 
+	 * @param id current disk index id
+	 * @param title 
+	 * @param artist
+	 * @param image_encoding base 64 string representation of an image for the disk
+	 * @param status indicates if disk is available or not
+	 */
 	public Disk(int id, String title, String artist, String image_encoding, String status){
 		this.title = title;
 		this.artist = artist;
@@ -31,34 +38,42 @@ public class Disk implements Serializable {
 		this.image_encoding = image_encoding;
 	}
 	
+	/**
+	 * 
+	 * @return current disk id
+	 */
 	public int getId() {
 		return id;
 	}
 
-	public String getPic_path() {
-		return image_encoding;
-	}
-
+	/**
+	 * 
+	 * @return the disk title
+	 */
 	public String getTitle(){
 		return title;
 	}
 	
+	/**
+	 * 
+	 * @return the disk artist
+	 */
 	public String getArtist(){
 		return artist;
 	}
 	
-	public String getConditions(){
-		return conditions;
-	}
-	
-	public String getInterest(){
-		return interest;
-	}
-	
+	/**
+	 * 
+	 * @return the status of the disk representing it's current availability
+	 */
 	public String getStatus(){
 		return status;
 	}
 	
+	/**
+	 * 
+	 * @return a string representing the image encoding of the disk
+	 */
 	public String getImageEncoding(){
 		return image_encoding;
 	}
