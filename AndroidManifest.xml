@@ -24,20 +24,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.niceapps.app.Login"
-            android:label="@string/app_name" >
-            
-        </activity>
-        <activity
-            android:name="com.niceapps.app.Profile"
-            android:hint="@string/app_name" 
-            android:windowSoftInputMode="stateHidden"
-            android:parentActivityName="com.niceapps.app.Login">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.niceapps.app.Login"/>
-        </activity>
-        <activity
             android:name="com.niceapps.app.MessageDetail"
             android:hint="@string/app_name" 
             android:windowSoftInputMode="stateHidden"
@@ -45,14 +31,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.niceapps.app.YourMessages"/>
-        </activity>
-        <activity
-            android:name="com.niceapps.app.UploadItem"
-            android:hint="@string/app_name" 
-            android:parentActivityName="com.niceapps.app.Profile">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.niceapps.app.Profile"/>
         </activity>
         <activity
             android:name="com.niceapps.app.YourMessages"
@@ -68,7 +46,7 @@
             android:parentActivityName="com.niceapps.app.Profile">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.niceapps.app.Profile"/>
+                android:value="com.niceapps.app.MainActivity"/>
         </activity>
         <activity
             android:name="com.niceapps.app.See_offer"
