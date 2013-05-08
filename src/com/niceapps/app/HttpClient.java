@@ -24,8 +24,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 public class HttpClient {
 
 	public static JSONObject SendHttpPost(String URL, JSONObject jsonObjSend) {
@@ -56,7 +54,6 @@ public class HttpClient {
 			}
 
 		} catch (Exception e) {
-			Log.d("http client", "Catch except..");
 			e.printStackTrace();
 		}
 		return null;

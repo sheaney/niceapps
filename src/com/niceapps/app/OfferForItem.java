@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -32,7 +31,6 @@ import com.facebook.widget.ProfilePictureView;
 public class OfferForItem extends Activity {
 	
 	private static final String URL = "http://niceapps.herokuapp.com/messages/";
-	private static final String TAG = "Msg_to_admin";
 	
 	private String fbusername;
 	private TextView title;
@@ -114,9 +112,6 @@ public class OfferForItem extends Activity {
 			jsonObjSend.put("content", message.getText().toString());
 			jsonObjSend.put("disk_id", disk.getId());
 			jsonObjSend.put("username", fbusername);
-
-			// Output the JSON object we're sending to Logcat:
-			Log.i(TAG, jsonObjSend.toString(2));
 
 		} catch (JSONException e) {
 			e.printStackTrace();

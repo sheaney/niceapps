@@ -10,10 +10,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class UrlJsonAsyncTask extends AsyncTask<String, Void, JSONObject> {
-	private static final String TAG = "UrlJsonAsyncTask";
 	private static final String LOADING_TITLE = "";
 	private static final String MESSAGE_LOADING = "Loading, please wait...";
 	private static final String MESSAGE_BUSY = "Server is busy. Please try again.";
@@ -110,12 +108,10 @@ public class UrlJsonAsyncTask extends AsyncTask<String, Void, JSONObject> {
 		    		if (retries-- > 0) {
 		    			json = queryUrlForJson(url);
 		    		} else {
-					Log.e(TAG, Lazy.Ex.getStackTrace(e));
 			    		json.put(this.jsonInfo, this.messageError);	
 		    		}
 		    	} 
 		} catch (JSONException e) {
-			Log.e(TAG, Lazy.Ex.getStackTrace(e));
 			return null;
 		}
 	    	
