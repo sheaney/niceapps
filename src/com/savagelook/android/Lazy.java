@@ -14,7 +14,12 @@ public class Lazy {
 	
 	public static class Str {
 		public static String urlEncode(String value, boolean trim) {
-			return java.net.URLEncoder.encode(value.trim());	
+			String encoding = "";
+			try {
+				encoding = java.net.URLEncoder.encode(value.trim(), "UTF-8");
+			} catch (Exception e) {}
+			
+			return encoding;
 		}
 		
 		public static String urlEncode(String value) {
