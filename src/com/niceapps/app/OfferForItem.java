@@ -118,7 +118,8 @@ public class OfferForItem extends Activity {
 		}
 		
 		// Send the HttpPostRequest and receive a JSONObject in return
-		HttpClient.SendHttpPost(URL, jsonObjSend);
+		//HttpClient.SendHttpPost(URL, jsonObjSend);
+		new PostMessage().execute(jsonObjSend);
 		
 		//if(jsonObjRecv.get(name))
 		String msg = "Message for " + disk.getTitle() + " sent to Musicbox..";

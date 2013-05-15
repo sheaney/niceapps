@@ -265,7 +265,8 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 		}
 		
 		// Send the HttpPostRequest and receive a JSONObject in return
-		HttpClient.SendHttpPost(USERS_URL, jsonObjSend);		
+		//HttpClient.SendHttpPost(USERS_URL, jsonObjSend);
+		new PostUser().execute(jsonObjSend);
 
 	}
 	
