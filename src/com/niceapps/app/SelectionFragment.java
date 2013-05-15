@@ -42,7 +42,6 @@ public class SelectionFragment extends Fragment implements OnItemClickListener {
 	
 	// URLs used for making requests to the web app
 	private static final String DISKS_URL = "http://niceapps.herokuapp.com/disks.json";
-	private static final String USERS_URL = "http://niceapps.herokuapp.com/users/";
 	
 	private ProfilePictureView profilePictureView;
 	private TextView userNameView;

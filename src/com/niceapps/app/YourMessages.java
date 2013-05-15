@@ -28,13 +28,14 @@ import com.savagelook.android.UrlJsonAsyncTask;
 public class YourMessages extends Activity implements OnItemClickListener {
 	private static final String MESSAGES_URL = "http://niceapps.herokuapp.com/msg_disk/";
 	private static final String NO_MESSAGES = "Your inbox is empty";
+	private String username;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.your_messages);
 		
-		String username = getIntent().getStringExtra("username");
+		username = getIntent().getStringExtra("username");
 		
 		// Set up action that will be triggered when user presses the Home button
 		((ImageButton)findViewById(R.id.home))
@@ -70,6 +71,8 @@ public class YourMessages extends Activity implements OnItemClickListener {
 		Message selected_message = (Message) parent.getItemAtPosition(pos);
 		Intent intent = new Intent(this, MessageDetail.class);
 		intent.putExtra("message", selected_message);
+		intent.putExtra("fbusername", username);
+		
 		startActivity(intent);
 	}
 

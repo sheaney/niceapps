@@ -30,8 +30,6 @@ import com.facebook.widget.ProfilePictureView;
  */
 public class OfferForItem extends Activity {
 	
-	private static final String URL = "http://niceapps.herokuapp.com/messages/";
-	
 	private String fbusername;
 	private TextView title;
 	private ImageView diskImage;
